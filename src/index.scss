@@ -4,9 +4,34 @@
 
 @layer base {
   body {
-    @apply mx-auto;
+    @apply mx-auto text-white bg-[#050505] select-none max-w-[1370px];
   }
   html {
     font-family: "Roboto", sans-serif;
+    @apply bg-[#050505];
   }
+}
+
+@layer components {
+  .container-movie {
+    @apply mx-auto px-7 mb-5;
+  }
+  .banner-image {
+    height: 500px;
+  }
+  .text-truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
+}
+
+.swiper-pagination-bullet {
+  @apply bg-secondary;
+}
+.swiper-pagination-bullet-active {
+  @apply bg-primary;
 }

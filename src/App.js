@@ -1,10 +1,21 @@
-import React from "react";
-
+import React, { Fragment } from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header/Header";
+import HomePage from "./pages/HomePage";
+import MoviePage from "./pages/MoviePage";
 const App = () => {
   return (
-    <div className="flex items-center justify-center flex-col font-semibold text-3xl text-red-500 mb-10">
-      <h1>Wellcome To Template Project ReactJS</h1>
-    </div>
+    <Fragment>
+      <Routes>
+        <Route path="/" element={<Header></Header>}>
+          <Route path="/" element={<HomePage></HomePage>}></Route>
+          <Route path="movie" element={<MoviePage></MoviePage>}></Route>
+          <Route path="tvseries" element={<div>Tivi Series</div>}></Route>
+          <Route path="mylist" element={<div>My List</div>}></Route>
+          <Route path="*" element={<div>Page Not Found</div>}></Route>
+        </Route>
+      </Routes>
+    </Fragment>
   );
 };
 

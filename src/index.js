@@ -1,16 +1,21 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App";
+import Loading from "./components/Loading/Loading";
+import "swiper/css";
+import "swiper/css/pagination";
+import SwiperCore, { Autoplay } from "swiper";
 import "./index.scss";
-import reportWebVitals from "./reportWebVitals";
+SwiperCore.use([Autoplay]);
 
+const RunApp = React.lazy(() => import("./App"));
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Suspense fallback={<Loading></Loading>}>
+        <RunApp />
+      </Suspense>
     </BrowserRouter>
   </React.StrictMode>
 );
-reportWebVitals();
