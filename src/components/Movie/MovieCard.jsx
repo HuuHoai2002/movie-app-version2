@@ -1,9 +1,11 @@
 import React from "react";
 import { IMAGE_PATH } from "../../api/Api";
+import { useMovies } from "../../contexts/MovieContext";
 import Button from "../Button/Button";
 
-const MovieCard = ({ data }) => {
-  const { poster_path } = data;
+const MovieCard = ({ data, isTivi = false }) => {
+  const { id, poster_path } = data;
+  const { handleNavigate } = useMovies();
   return (
     <div className="relative overflow-hidden group cursor-pointer rounded-lg">
       <div className="">
@@ -17,7 +19,10 @@ const MovieCard = ({ data }) => {
         <div className="flex items-center justify-center">
           <Button
             text={"Watch Now"}
-            className="text-sm hover:opacity-90"></Button>
+            className="text-sm hover:opacity-90"
+            onClick={() =>
+              handleNavigate(`${isTivi ? "tv" : "movie"}`, id)
+            }></Button>
         </div>
       </div>
     </div>

@@ -1,9 +1,10 @@
 import React from "react";
 
-const ButtonPlay = ({ text, className = "" }) => {
+const ButtonPlay = ({ text, className = "", onClick }) => {
   return (
     <div
-      className={`cursor-pointer py-2 max-w-[300px] flex items-center justify-center gap-x-2 bg-primary rounded-3xl hover:opacity-80 transition-all ${className}`}>
+      className={`cursor-pointer py-2 max-w-[300px] flex items-center justify-center gap-x-2 bg-primary rounded-3xl hover:opacity-80 transition-all ${className}`}
+      onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"

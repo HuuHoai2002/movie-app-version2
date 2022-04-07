@@ -1,13 +1,15 @@
 import React from "react";
 import { IMAGE_PATH } from "../../api/Api";
+import { useMovies } from "../../contexts/MovieContext";
 import Button from "../Button/Button";
 import ButtonPlay from "../Button/ButtonPlay";
 import ButtonStar from "../Button/ButtonStar";
 
 const BannerCard = ({ data }) => {
+  const { handleNavigate } = useMovies();
+
   const {
     id,
-    original_title,
     overview,
     backdrop_path,
     release_date,
@@ -63,7 +65,8 @@ const BannerCard = ({ data }) => {
         <div>
           <ButtonPlay
             text={"Watch Now"}
-            className="font-medium py-3"></ButtonPlay>
+            className="font-medium py-3"
+            onClick={() => handleNavigate("movie", id)}></ButtonPlay>
         </div>
       </div>
       <div className="absolute top-2/4 -translate-y-2/4 right-[300px] max-w-[500px]">
