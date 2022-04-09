@@ -7,16 +7,8 @@ import ButtonStar from "../Button/ButtonStar";
 
 const BannerCard = ({ data }) => {
   const { handleNavigate } = useMovies();
-
-  const {
-    id,
-    overview,
-    backdrop_path,
-    release_date,
-    vote_average,
-    poster_path,
-    title,
-  } = data;
+  const { id, overview, backdrop_path, release_date, vote_average, title } =
+    data;
   return (
     <div className="relative">
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,1)]"></div>
@@ -37,13 +29,17 @@ const BannerCard = ({ data }) => {
             {title}
           </h1>
           <span className="text-secondary font-medium">
-            {new Date(release_date).getFullYear()}
+            {new Date(release_date).getFullYear().toString()}
           </span>
         </div>
         <div className="max-w-[400px]">
           <div className="">
-            <span className="text-truncate text-lg">{overview}</span>
-            <span className="flex items-center gap-x-2 text-[15px] font-medium leading-4 text-[#239D61] underline cursor-pointer group">
+            <span className="text-truncate text-lg">
+              {overview || "Chưa có"}
+            </span>
+            <span
+              className="flex items-center gap-x-2 text-[15px] font-medium leading-4 text-[#239D61] underline cursor-pointer group"
+              onClick={() => handleNavigate("movie", id)}>
               Xem chi tiết
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,21 +56,13 @@ const BannerCard = ({ data }) => {
               </svg>
             </span>
           </div>
-          <div></div>
         </div>
         <div>
           <ButtonPlay
             text={"Watch Now"}
             className="font-medium py-3"
-            onClick={() => handleNavigate("movie", id)}></ButtonPlay>
+            onClick={() => handleNavigate("watch", id)}></ButtonPlay>
         </div>
-      </div>
-      <div className="absolute top-2/4 -translate-y-2/4 right-[300px] max-w-[500px]">
-        <img
-          src={`${IMAGE_PATH}${poster_path}`}
-          alt=""
-          className="w-full h-[350px] rounded-lg"
-        />
       </div>
     </div>
   );

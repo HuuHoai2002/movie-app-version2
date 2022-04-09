@@ -4,14 +4,14 @@ import { movieApi } from "../../api/Api";
 import MovieCard from "./MovieCard";
 import Tooltip from "@mui/material/Tooltip";
 
-const MovieList = ({ text = "", type = "", page = 1 }) => {
+const MovieSimilar = ({ text = "", movieID, page = 1 }) => {
   const [changePage, setChangePage] = useState(page);
   const [totalPage, setTotalPage] = useState(page);
   const [movie, setMovie] = useState([]);
   useEffect(() => {
     const handleCallAPI = async () => {
       try {
-        const response = await movieApi.getMovie(type, changePage);
+        const response = await movieApi.getMovieSimilar(movieID, changePage);
         setMovie(response?.results);
         setTotalPage(response.total_pages);
       } catch (error) {
@@ -19,7 +19,7 @@ const MovieList = ({ text = "", type = "", page = 1 }) => {
       }
     };
     handleCallAPI();
-  }, [type, changePage]);
+  }, [movieID, changePage]);
   const handleNextPage = useCallback(() => {
     setChangePage((page) => page + 1);
   }, []);
@@ -64,6 +64,12 @@ const MovieList = ({ text = "", type = "", page = 1 }) => {
                 />
               </svg>
             </Tooltip>
+            {changePage !== page && (
+              <div className="flex items-center gap-x-1 font-medium">
+                <span className="text-blue-600">{changePage}</span>/
+                <span>{totalPage}</span>
+              </div>
+            )}
           </div>
         </div>
         <div className="w-full rounded-lg">
@@ -86,4 +92,4 @@ const MovieList = ({ text = "", type = "", page = 1 }) => {
   );
 };
 
-export default React.memo(MovieList);
+export default React.memo(MovieSimilar);

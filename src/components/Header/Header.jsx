@@ -1,6 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Button from "../Button/Button";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+
 const ListLink = [
   {
     id: 1,
@@ -29,7 +32,25 @@ const ListLink = [
 ];
 const Header = () => {
   const [background, setBackground] = useState(false);
+  const [openModalNoti, setOpenModalNoti] = useState(false);
 
+  const handleModalOpen = () => {
+    setOpenModalNoti(true);
+  };
+  const handleModalClose = () => {
+    setOpenModalNoti(false);
+  };
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 100) {
@@ -100,7 +121,7 @@ const Header = () => {
                 />
               </svg>
             </div>
-            <div className="cursor-pointer relative">
+            <div className="cursor-pointer relative" onClick={handleModalOpen}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -118,6 +139,9 @@ const Header = () => {
                 1
               </div>
             </div>
+            <Modal open={openModalNoti} onClose={handleModalClose}>
+              <Box sx={{ ...style, width: 200 }}>HAHA</Box>
+            </Modal>
             <div className="cursor-pointer">
               <Button text={"Premium"}></Button>
             </div>

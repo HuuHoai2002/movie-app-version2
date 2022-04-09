@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -12,15 +12,23 @@ const MovieProvider = ({ children }) => {
   const handleNavigateTV = (path, movieID, Episode) => {
     navigate(`/${path}/${movieID}/${Episode}`);
   };
-
   const Frame_Movie_Path = "https://www.2embed.ru/embed/tmdb/movie?id=";
   const Frame_Tivi_Path = "https://www.2embed.ru/embed/tmdb/tv?id=";
+
+  const [loading, setLoading] = useState(true);
+
+  const handleSetTitle = ({ title = "" }) => {
+    document.title = title;
+  };
   const value = {
     handleNavigate,
     handleNavigateTV,
     useLocalStorage,
     Frame_Movie_Path,
     Frame_Tivi_Path,
+    loading,
+    setLoading,
+    handleSetTitle,
   };
   return (
     <movieContext.Provider value={value}>{children}</movieContext.Provider>

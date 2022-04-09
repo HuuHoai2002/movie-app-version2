@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { movieApi } from "../../api/Api";
-import { useMovies } from "../../contexts/MovieContext";
+import Loading from "../Loading/Loading";
 import BannerCard from "./BannerCard";
 
 const Banner = ({ type = "popular" }) => {
@@ -22,20 +22,24 @@ const Banner = ({ type = "popular" }) => {
   }, [type]);
   return (
     <div className="w-full h-full bg-transparent overflow-hidden">
-      <Swiper
-        autoplay={true}
-        speed={1000}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}>
-        {movieBanner.length > 0 &&
-          movieBanner.map((item) => (
-            <SwiperSlide key={item.id}>
-              <BannerCard data={item}></BannerCard>
-            </SwiperSlide>
-          ))}
-      </Swiper>
+      {!loading ? (
+        <Swiper
+          autoplay={true}
+          speed={1000}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}>
+          {movieBanner.length > 0 &&
+            movieBanner.map((item) => (
+              <SwiperSlide key={item.id}>
+                <BannerCard data={item}></BannerCard>
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      ) : (
+        <Loading></Loading>
+      )}
     </div>
   );
 };

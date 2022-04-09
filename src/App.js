@@ -2,8 +2,10 @@ import React, { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage";
-import MovieDetails from "./pages/MovieDetails";
-import MoviePage from "./pages/MoviePage";
+import MovieDetails from "./pages/Movie/MovieDetails";
+import MoviePage from "./pages/Movie/MoviePage";
+import WatchingMovie from "./pages/Watch/WatchingMovie";
+
 const App = () => {
   return (
     <Fragment>
@@ -14,9 +16,9 @@ const App = () => {
           <Route
             path="movie/:movieID"
             element={<MovieDetails></MovieDetails>}></Route>
-          <Route path="tvseries" element={<div>Tivi Series</div>}></Route>
-          <Route path="mylist" element={<div>My List</div>}></Route>
-          <Route path="*" element={<div>Page Not Found</div>}></Route>
+          <Route
+            path="watch/:movieID"
+            element={<WatchingMovie></WatchingMovie>}></Route>
         </Route>
       </Routes>
     </Fragment>

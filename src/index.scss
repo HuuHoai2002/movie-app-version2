@@ -3,10 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply mx-auto text-white bg-[#050505] select-none max-w-[1370px];
-  }
   html {
+    @apply mx-auto text-white bg-[#050505] select-none max-w-[1370px];
     font-family: "Roboto", sans-serif;
     ::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px #111111;
@@ -19,18 +17,23 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: #6a5af9;
-      border-radius: 8px;
+      @apply rounded-lg bg-purple-400;
     }
+  }
+  #root {
+    overflow: hidden;
   }
 }
 
 @layer components {
+  .container-page {
+    @apply mx-auto p-7;
+  }
   .container-movie {
     @apply mx-auto px-7 mb-5;
   }
-  .banner-image {
-    height: 500px;
+  .container-watch {
+    @apply mx-auto px-7 mt-[90px] w-full h-full;
   }
   .text-truncate {
     display: -webkit-box;
@@ -41,7 +44,6 @@
     word-break: break-word;
   }
 }
-
 .swiper-pagination-bullet {
   @apply bg-secondary;
 }

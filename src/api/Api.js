@@ -32,10 +32,10 @@ export const movieApi = {
       )
     ).data;
   },
-  async getMovieSimilar(movieID) {
+  async getMovieSimilar(movieID, page = 1) {
     return await (
       await axios.get(
-        `${API_MOVIE}${movieID}/similar?api_key=${API_KEY}&language=vi`
+        `${API_MOVIE}${movieID}/similar?api_key=${API_KEY}&language=vi&page=${page}`
       )
     ).data;
   },

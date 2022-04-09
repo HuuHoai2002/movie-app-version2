@@ -8,7 +8,7 @@ const MovieCard = ({ data, isTivi = false }) => {
   const { handleNavigate } = useMovies();
   return (
     <div className="relative overflow-hidden group cursor-pointer rounded-lg">
-      <div className="">
+      <div onClick={() => handleNavigate(`${isTivi ? "tv" : "movie"}`, id)}>
         <img
           src={`${IMAGE_PATH}${poster_path}`}
           alt=""
@@ -19,10 +19,7 @@ const MovieCard = ({ data, isTivi = false }) => {
         <div className="flex items-center justify-center">
           <Button
             text={"Watch Now"}
-            className="text-sm hover:opacity-90"
-            onClick={() =>
-              handleNavigate(`${isTivi ? "tv" : "movie"}`, id)
-            }></Button>
+            onClick={() => handleNavigate("watch", id)}></Button>
         </div>
       </div>
     </div>
