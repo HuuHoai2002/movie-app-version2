@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { movieApi } from "../../api/Api";
+import { tiviSeriesApi } from "../../api/Api";
 import Loading from "../Loading/Loading";
 import BannerCard from "./BannerCard";
 
-const Banner = ({ type = "popular", page = 1 }) => {
+const BannerTvSeries = ({ type = "popular", page = 1 }) => {
   const [movieBanner, setMovieBanner] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeSlide, setActiveSlide] = useState(0);
   useEffect(() => {
     const handleCallAPI = async () => {
       try {
-        const response = await movieApi.getMovie(type, page);
+        const response = await tiviSeriesApi.getTiviSeries(type, page);
         setMovieBanner(response?.results);
         setLoading(false);
       } catch (error) {
@@ -21,6 +21,7 @@ const Banner = ({ type = "popular", page = 1 }) => {
     };
     handleCallAPI();
   }, [page, type]);
+  console.log(movieBanner);
   return (
     <div className="w-full h-full overflow-hidden">
       {!loading ? (
@@ -38,7 +39,8 @@ const Banner = ({ type = "popular", page = 1 }) => {
               <SwiperSlide key={item.id}>
                 <BannerCard
                   data={item}
-                  isActive={index === activeSlide}></BannerCard>
+                  isActive={index === activeSlide}
+                  isTivi={true}></BannerCard>
               </SwiperSlide>
             ))}
         </Swiper>
@@ -49,4 +51,4 @@ const Banner = ({ type = "popular", page = 1 }) => {
   );
 };
 
-export default Banner;
+export default BannerTvSeries;

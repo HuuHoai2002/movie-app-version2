@@ -1,11 +1,14 @@
+import Tooltip from "@mui/material/Tooltip";
 import React from "react";
 import { IMAGE_PATH } from "../../api/Api";
 import { useMovies } from "../../contexts/MovieContext";
 import Button from "../Button/Button";
+import ButtonAdd from "../Button/ButtonAdd";
+import ButtonDownload from "../Button/ButtonDownload";
 import ButtonPlay from "../Button/ButtonPlay";
 import ButtonStar from "../Button/ButtonStar";
 
-const BannerCard = ({ data }) => {
+const BannerCard = ({ data, isActive, isTivi = false }) => {
   const { handleNavigate } = useMovies();
   const { id, overview, backdrop_path, release_date, vote_average, title } =
     data;
@@ -19,27 +22,34 @@ const BannerCard = ({ data }) => {
           className="banner-image w-full h-full object-cover"
         />
       </div>
-      <div className="absolute top-2/4 -translate-y-2/4 left-10 flex flex-col gap-y-7">
+      <div
+        className={`absolute top-2/4 left-10 flex flex-col gap-y-7 ${
+          isActive ? "animation -translate-y-2/4" : "hidden"
+        }`}>
         <div className="flex flex-col gap-y-3">
           <div className="flex items-center gap-x-2">
             <Button text={"Premium"} className="!rounded-lg"></Button>
             <ButtonStar text={vote_average}></ButtonStar>
           </div>
-          <h1 className="text-5xl leading-[60px] font-medium max-w-[450px]">
-            {title}
+          <h1 className="text-4xl leading-[50px] font-medium max-w-[450px]">
+            {title || data.name}
           </h1>
           <span className="text-secondary font-medium">
-            {new Date(release_date).getFullYear().toString()}
+            {new Date(release_date || data.first_air_date)
+              .getFullYear()
+              .toString()}
           </span>
         </div>
         <div className="max-w-[400px]">
           <div className="">
-            <span className="text-truncate text-lg">
+            <span className="text-truncate text-base">
               {overview || "Chưa có"}
             </span>
             <span
               className="flex items-center gap-x-2 text-[15px] font-medium leading-4 text-[#239D61] underline cursor-pointer group"
-              onClick={() => handleNavigate("movie", id)}>
+              onClick={() =>
+                handleNavigate(`${isTivi ? "tvseries" : "movie"}`, id)
+              }>
               Xem chi tiết
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -55,13 +65,27 @@ const BannerCard = ({ data }) => {
                 />
               </svg>
             </span>
+            <div className="mt-5 flex items-center gap-x-5">
+              <Tooltip title="Thêm vào danh sách" placement="top">
+                <div>
+                  <ButtonAdd></ButtonAdd>
+                </div>
+              </Tooltip>
+              <Tooltip title="Tải về máy" placement="top">
+                <div>
+                  <ButtonDownload></ButtonDownload>
+                </div>
+              </Tooltip>
+            </div>
           </div>
         </div>
         <div>
           <ButtonPlay
-            text={"Watch Now"}
-            className="font-medium py-3"
-            onClick={() => handleNavigate("watch", id)}></ButtonPlay>
+            text={"Xem Ngay"}
+            className="font-medium py-3 w-[300px]"
+            onClick={() =>
+              handleNavigate(`${isTivi ? "watchtv" : "watch"}`, id)
+            }></ButtonPlay>
         </div>
       </div>
     </div>

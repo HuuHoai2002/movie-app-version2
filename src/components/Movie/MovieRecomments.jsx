@@ -1,36 +1,33 @@
-import { Tooltip } from "@mui/material";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, Fragment } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { tiviSeriesApi } from "../../api/Api";
-import MovieCard from "../Movie/MovieCard";
+import { movieApi } from "../../api/Api";
+import MovieCard from "./MovieCard";
+import Tooltip from "@mui/material/Tooltip";
 
-const TVSeriesList = ({ text = "", type = "", page = 1 }) => {
+const MovieRecomments = ({ text = "", movieID, page = 1 }) => {
   const [changePage, setChangePage] = useState(page);
   const [totalPage, setTotalPage] = useState(page);
-  const [loading, setLoading] = useState(true);
-
   const [movie, setMovie] = useState([]);
   useEffect(() => {
     const handleCallAPI = async () => {
       try {
-        const response = await tiviSeriesApi.getTiviSeries(type, changePage);
+        const response = await movieApi.getMovieRecomments(movieID, changePage);
         setMovie(response?.results);
         setTotalPage(response.total_pages);
-        setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
     handleCallAPI();
-  }, [type, changePage]);
-  const handleNextPage = () => {
+  }, [movieID, changePage]);
+  const handleNextPage = useCallback(() => {
     setChangePage((page) => page + 1);
-  };
-  const handlePrePage = () => {
+  }, []);
+  const handlePrePage = useCallback(() => {
     setChangePage((page) => page - 1);
-  };
+  }, []);
   return (
-    <div className="container-movie overflow-hidden">
+    <div className="overflow-hidden">
       <Fragment>
         <div className="flex items-center gap-x-5">
           <h1 className="text-xl font-medium py-5">{text}</h1>
@@ -67,6 +64,12 @@ const TVSeriesList = ({ text = "", type = "", page = 1 }) => {
                 />
               </svg>
             </Tooltip>
+            {changePage !== page && (
+              <div className="flex items-center gap-x-1 font-medium">
+                <span className="text-blue-600">{changePage}</span>/
+                <span>{totalPage}</span>
+              </div>
+            )}
           </div>
         </div>
         <div className="w-full rounded-lg">
@@ -78,8 +81,8 @@ const TVSeriesList = ({ text = "", type = "", page = 1 }) => {
             {movie &&
               movie.length > 0 &&
               movie.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <MovieCard data={item} isTivi={true}></MovieCard>
+                <SwiperSlide key={item.id} className="overflow-hidden">
+                  <MovieCard data={item}></MovieCard>
                 </SwiperSlide>
               ))}
           </Swiper>
@@ -89,4 +92,4 @@ const TVSeriesList = ({ text = "", type = "", page = 1 }) => {
   );
 };
 
-export default React.memo(TVSeriesList);
+export default React.memo(MovieRecomments);

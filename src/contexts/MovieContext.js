@@ -1,5 +1,7 @@
-import React, { createContext, useContext, useState } from "react";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { db } from "../firebase/firebase-config";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const movieContext = createContext();
@@ -20,6 +22,43 @@ const MovieProvider = ({ children }) => {
   const handleSetTitle = ({ title = "" }) => {
     document.title = title;
   };
+
+  // store firebase
+
+  //get firestore
+  const colRef = collection(db, "Notification");
+  const [notifications, setNotifications] = useState([]);
+  useEffect(() => {
+    onSnapshot(colRef, (snapshot) => {
+      let Notifications = [];
+      snapshot.docs.forEach((doc) => {
+        Notifications.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+      setNotifications(Notifications);
+    });
+    // const handleGetNotification = async () => {
+    //   try {
+    //     const snapshot = await getDocs(colRef);
+    //     let Notifications = [];
+    //     snapshot.docs.forEach((doc) => {
+    //       Notifications.push({
+    //         id: doc.id,
+    //         ...doc.data(),
+    //       });
+    //     });
+    //     setNotifications(Notifications);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // handleGetNotification();
+    return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const value = {
     handleNavigate,
     handleNavigateTV,
@@ -29,6 +68,7 @@ const MovieProvider = ({ children }) => {
     loading,
     setLoading,
     handleSetTitle,
+    notifications,
   };
   return (
     <movieContext.Provider value={value}>{children}</movieContext.Provider>

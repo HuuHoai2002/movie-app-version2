@@ -25,10 +25,10 @@ export const movieApi = {
       )
     ).data;
   },
-  async getMovieReviews(movieID) {
+  async getMovieReviews(movieID, page = 1) {
     return await (
       await axios.get(
-        `${API_MOVIE}${movieID}/reviews?api_key=${API_KEY}&language=vi`
+        `${API_MOVIE}${movieID}/reviews?api_key=${API_KEY}&page=${page}`
       )
     ).data;
   },
@@ -39,13 +39,20 @@ export const movieApi = {
       )
     ).data;
   },
+  async getMovieRecomments(movieID, page = 1) {
+    return await (
+      await axios.get(
+        `${API_MOVIE}${movieID}/recommendations?api_key=${API_KEY}&language=vi&page=${page}`
+      )
+    ).data;
+  },
 };
 
 export const tiviSeriesApi = {
   async getTiviSeries(type, page = 1) {
     return await (
       await axios.get(
-        `${API_TIVI}${type}?api_key=${API_KEY}&language=en-US&page=${page}`
+        `${API_TIVI}${type}?api_key=${API_KEY}&language=vi&page=${page}`
       )
     ).data;
   },

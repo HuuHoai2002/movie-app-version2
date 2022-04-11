@@ -33,7 +33,7 @@
     @apply mx-auto px-7 mb-5;
   }
   .container-watch {
-    @apply mx-auto px-7 mt-[90px] w-full h-full;
+    @apply mx-auto px-20 mt-[90px] w-full h-full;
   }
   .text-truncate {
     display: -webkit-box;
@@ -49,4 +49,18 @@
 }
 .swiper-pagination-bullet-active {
   @apply bg-primary;
+}
+
+@keyframes ani {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+.animation {
+  animation: ani 1000ms;
 }

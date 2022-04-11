@@ -18,7 +18,7 @@ const MovieCard = ({ data, isTivi = false }) => {
       <div className="absolute bottom-2 w-full translate-y-[100px] group-hover:translate-y-[0] transition-all overflow-hidden">
         <div className="flex items-center justify-center">
           <Button
-            text={"Watch Now"}
+            text={"Xem Ngay"}
             onClick={() => handleNavigate("watch", id)}></Button>
         </div>
       </div>

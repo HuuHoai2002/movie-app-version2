@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { useMovies } from "../../contexts/MovieContext";
+import useClickOutSide from "../../hooks/useClickOutSide";
 import Button from "../Button/Button";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
 
 const ListLink = [
   {
@@ -32,25 +32,11 @@ const ListLink = [
 ];
 const Header = () => {
   const [background, setBackground] = useState(false);
-  const [openModalNoti, setOpenModalNoti] = useState(false);
+  const { show, setShow, nodeRef } = useClickOutSide();
+  // get Notifications
+  const { notifications } = useMovies();
+  console.log(notifications);
 
-  const handleModalOpen = () => {
-    setOpenModalNoti(true);
-  };
-  const handleModalClose = () => {
-    setOpenModalNoti(false);
-  };
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 100) {
@@ -121,14 +107,15 @@ const Header = () => {
                 />
               </svg>
             </div>
-            <div className="cursor-pointer relative" onClick={handleModalOpen}>
+            <div className="cursor-pointer relative" ref={nodeRef}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                strokeWidth={2}>
+                strokeWidth={2}
+                onClick={() => setShow(!show)}>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -136,12 +123,21 @@ const Header = () => {
                 />
               </svg>
               <div className="absolute -top-1 -right-1 w-4 h-4 rounded-3xl bg-primary text-xs flex items-center justify-center">
-                1
+                {notifications.length}
               </div>
+              {show && (
+                <div
+                  className={`absolute bg-[#0e141a] w-[400px] top-10 right-0 rounded-lg p-3 border border-[#212225]`}>
+                  <h1 className="font-medium mb-3 text-blue-500">Thông Báo</h1>
+                  <div className="w-full">
+                    {notifications.length > 0 &&
+                      notifications.map((noti) => (
+                        <div className="text-sm mb-2">{noti.Title}</div>
+                      ))}
+                  </div>
+                </div>
+              )}
             </div>
-            <Modal open={openModalNoti} onClose={handleModalClose}>
-              <Box sx={{ ...style, width: 200 }}>HAHA</Box>
-            </Modal>
             <div className="cursor-pointer">
               <Button text={"Premium"}></Button>
             </div>

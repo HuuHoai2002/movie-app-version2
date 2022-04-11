@@ -4,6 +4,7 @@ import MovieList from "../components/Movie/MovieList";
 import TVSeriesList from "../components/TVSeries/TVSeriesList";
 
 const HomePage = () => {
+  document.title = "Trang Chủ";
   return (
     <Fragment>
       <Banner></Banner>

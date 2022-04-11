@@ -1,7 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Banner from "../../components/Banner/Banner";
 
 const MoviePage = () => {
-  return <div className="h-[9999px]">Movie Page</div>;
+  document.title = "Phim Chiếu Rạp";
+  return (
+    <Fragment>
+      <Banner type="now_playing" page={2}></Banner>
+    </Fragment>
+  );
 };
 
 export default MoviePage;
