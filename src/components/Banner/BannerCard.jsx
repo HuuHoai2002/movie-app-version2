@@ -48,7 +48,7 @@ const BannerCard = ({ data, isActive, isTivi = false }) => {
             <span
               className="flex items-center gap-x-2 text-[15px] font-medium leading-4 text-[#239D61] underline cursor-pointer group"
               onClick={() =>
-                handleNavigate(`${isTivi ? "tvseries" : "movie"}`, id)
+                handleNavigate(`${isTivi ? "tvserie" : "movie"}`, id)
               }>
               Xem chi tiết
               <svg

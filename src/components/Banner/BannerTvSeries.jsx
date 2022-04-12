@@ -21,7 +21,6 @@ const BannerTvSeries = ({ type = "popular", page = 1 }) => {
     };
     handleCallAPI();
   }, [page, type]);
-  console.log(movieBanner);
   return (
     <div className="w-full h-full overflow-hidden">
       {!loading ? (

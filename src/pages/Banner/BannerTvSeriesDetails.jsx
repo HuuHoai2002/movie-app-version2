@@ -1,25 +1,25 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { movieApi } from "../../api/Api";
+import { tiviSeriesApi } from "../../api/Api";
 import Loading from "../../components/Loading/Loading";
 import BannerDetailsCard from "./BannerDetailsCard";
 
-const BannerDetails = ({ movieID }) => {
+const BannerTvSeriesDetails = ({ movieID }) => {
   const [movieDetails, setMovieDetails] = useState(null);
   const [movieCredits, setMovieCredits] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const handleGetMovieDetails = useCallback(async (movieID) => {
+  const handleGetTvSeriesDetails = useCallback(async (movieID) => {
     try {
-      const response = await movieApi.getMovieDetails(movieID);
+      const response = await tiviSeriesApi.getTiviSeriesDetails(movieID);
       setMovieDetails(response);
       setLoading(false);
     } catch (error) {
       console.log(error);
     }
   }, []);
-  const handleGetMovieCredits = useCallback(async (movieID) => {
+  const handleGetTvSeriesCredits = useCallback(async (movieID) => {
     try {
-      const response = await movieApi.getMovieCredits(movieID);
+      const response = await tiviSeriesApi.getTiviSeriesCredits(movieID);
       setMovieCredits(response?.cast);
       setLoading(false);
     } catch (error) {
@@ -27,10 +27,11 @@ const BannerDetails = ({ movieID }) => {
     }
   }, []);
   useEffect(() => {
-    handleGetMovieDetails(movieID);
-    handleGetMovieCredits(movieID);
+    handleGetTvSeriesDetails(movieID);
+    handleGetTvSeriesCredits(movieID);
     return () => {};
-  }, [handleGetMovieCredits, handleGetMovieDetails, movieID]);
+  }, [handleGetTvSeriesCredits, handleGetTvSeriesDetails, movieID]);
+
   return (
     <div>
       {!loading ? (
@@ -38,7 +39,8 @@ const BannerDetails = ({ movieID }) => {
         movieCredits && (
           <BannerDetailsCard
             data={movieDetails}
-            cast={movieCredits}></BannerDetailsCard>
+            cast={movieCredits}
+            isTivi={true}></BannerDetailsCard>
         )
       ) : (
         <Loading></Loading>
@@ -47,4 +49,4 @@ const BannerDetails = ({ movieID }) => {
   );
 };
 
-export default BannerDetails;
+export default BannerTvSeriesDetails;

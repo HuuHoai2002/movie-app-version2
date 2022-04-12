@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button";
 import ButtonPlay from "../../components/Button/ButtonPlay";
 import { useMovies } from "../../contexts/MovieContext";
 
-const BannerDetailsCard = ({ data, cast }) => {
+const BannerDetailsCard = ({ data, cast, isTivi = false }) => {
   const { handleNavigate } = useMovies();
   const {
     backdrop_path,
@@ -37,11 +37,21 @@ const BannerDetailsCard = ({ data, cast }) => {
         <div className="flex flex-col gap-y-7">
           <div className="flex flex-col gap-y-3">
             <h1 className="text-4xl leading-[50px] font-medium max-w-[450px]">
-              {title}
+              {title || data.name}
             </h1>
             <div className="flex items-center gap-x-3 font-medium text-blue-500">
-              <span>Phát hành: {new Date(release_date).getFullYear()},</span>
-              <span>Thời lượng: {runtime} phút</span>
+              <span>
+                Phát hành:{" "}
+                {new Date(release_date || data.first_air_date).getFullYear()},
+              </span>
+              {!isTivi ? (
+                <span>Thời lượng: {runtime} phút</span>
+              ) : (
+                <span>
+                  Số tập: {data.number_of_episodes} , Số phần:{" "}
+                  {data.number_of_seasons}
+                </span>
+              )}
             </div>
             <div className="flex items-center gap-x-5">
               {genres &&
@@ -67,7 +77,9 @@ const BannerDetailsCard = ({ data, cast }) => {
             <ButtonPlay
               text={"Xem Ngay"}
               className="font-medium py-[12px]"
-              onClick={() => handleNavigate("watch", id)}></ButtonPlay>
+              onClick={() =>
+                handleNavigate(`${isTivi ? "watchtv" : "watch"}`, id)
+              }></ButtonPlay>
           </div>
         </div>
         <div className="flex flex-col gap-y-5">

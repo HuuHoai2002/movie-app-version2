@@ -75,10 +75,10 @@ export const tiviSeriesApi = {
       )
     ).data;
   },
-  async getTiviSeriesSimilar(tiviID) {
+  async getTiviSeriesSimilar(tiviID, page = 1) {
     return await (
       await axios.get(
-        `${API_TIVI}${tiviID}/similar?api_key=${API_KEY}&language=vi`
+        `${API_TIVI}${tiviID}/similar?api_key=${API_KEY}&language=vi&page=${page}`
       )
     ).data;
   },

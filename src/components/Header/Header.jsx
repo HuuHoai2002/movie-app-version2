@@ -35,7 +35,6 @@ const Header = () => {
   const { show, setShow, nodeRef } = useClickOutSide();
   // get Notifications
   const { notifications } = useMovies();
-  console.log(notifications);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -132,7 +131,9 @@ const Header = () => {
                   <div className="w-full">
                     {notifications.length > 0 &&
                       notifications.map((noti) => (
-                        <div className="text-sm mb-2">{noti.Title}</div>
+                        <div className="text-sm mb-2" key={noti.id}>
+                          {noti.Title}
+                        </div>
                       ))}
                   </div>
                 </div>

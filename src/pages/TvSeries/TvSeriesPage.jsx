@@ -5,7 +5,7 @@ const TvSeriesPage = () => {
   document.title = "Phim Bộ";
   return (
     <Fragment>
-      <BannerTvSeries type="top_rated" page={2}></BannerTvSeries>
+      <BannerTvSeries type="top_rated" page={10}></BannerTvSeries>
     </Fragment>
   );
 };

@@ -11,7 +11,7 @@ const HomePage = () => {
       <MovieList
         text={"Phim Mới Thịnh Hành"}
         type="popular"
-        page={6}></MovieList>
+        page={2}></MovieList>
       <MovieList
         text={"Phim Chiếu Rạp Hay Nhất"}
         type="top_rated"
