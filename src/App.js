@@ -1,41 +1,48 @@
-import React, { Fragment } from "react";
+import React, { Fragment, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header";
-import Form from "./pages/Form/Form";
-import HomePage from "./pages/HomePage";
-import MovieDetails from "./pages/Movie/MovieDetails";
-import MoviePage from "./pages/Movie/MoviePage";
-import TvSeriesDetails from "./pages/TvSeries/TvSeriesDetails";
-import TvSeriesPage from "./pages/TvSeries/TvSeriesPage";
-import WatchingMovie from "./pages/Watch/WatchingMovie";
-import WatchingTvSeries from "./pages/Watch/WatchingTvSeries";
+import Loading from "./components/Loading/Loading";
+
+const Header = lazy(() => import("./components/Header/Header"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const MoviePage = lazy(() => import("./pages/Movie/MoviePage"));
+const TvSeriesPage = lazy(() => import("./pages/TvSeries/TvSeriesPage"));
+const MovieDetails = lazy(() => import("./pages/Movie/MovieDetails"));
+const TvSeriesDetails = lazy(() => import("./pages/TvSeries/TvSeriesDetails"));
+const WatchingMovie = lazy(() => import("./pages/Watch/WatchingMovie"));
+const WatchingTvSeries = lazy(() => import("./pages/Watch/WatchingTvSeries"));
+const MyList = lazy(() => import("./pages/MyList/MyList"));
+const FormAuth = lazy(() => import("./pages/Form/FormAuth"));
+const PageNotFound = lazy(() => import("./pages/NotFound/PageNotFound"));
 
 const App = () => {
   return (
     <Fragment>
-      <Routes>
-        <Route path="/" element={<Header></Header>}>
-          <Route path="/" element={<HomePage></HomePage>}></Route>
-          <Route path="movies" element={<MoviePage></MoviePage>}></Route>
-          <Route
-            path="movie/:movieID"
-            element={<MovieDetails></MovieDetails>}></Route>
-          <Route
-            path="watch/:movieID"
-            element={<WatchingMovie></WatchingMovie>}></Route>
-          <Route
-            path="tvseries"
-            element={<TvSeriesPage></TvSeriesPage>}></Route>
-          <Route
-            path="tvserie/:movieID"
-            element={<TvSeriesDetails></TvSeriesDetails>}></Route>
-          <Route
-            path="watchtv/:movieID"
-            element={<WatchingTvSeries></WatchingTvSeries>}></Route>
-          <Route path="mylist" element={<div>My List...</div>}></Route>
-        </Route>
-        <Route path="auth" element={<Form></Form>}></Route>
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<Header></Header>}>
+            <Route path="/" element={<HomePage></HomePage>}></Route>
+            <Route path="movies" element={<MoviePage></MoviePage>}></Route>
+            <Route
+              path="movie/:movieID"
+              element={<MovieDetails></MovieDetails>}></Route>
+            <Route
+              path="watch/:movieID"
+              element={<WatchingMovie></WatchingMovie>}></Route>
+            <Route
+              path="tvseries"
+              element={<TvSeriesPage></TvSeriesPage>}></Route>
+            <Route
+              path="tvserie/:movieID"
+              element={<TvSeriesDetails></TvSeriesDetails>}></Route>
+            <Route
+              path="watchtv/:movieID"
+              element={<WatchingTvSeries></WatchingTvSeries>}></Route>
+            <Route path="mylist" element={<MyList></MyList>}></Route>
+            <Route path="auth" element={<FormAuth></FormAuth>}></Route>
+            <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+          </Route>
+        </Routes>
+      </Suspense>
     </Fragment>
   );
 };

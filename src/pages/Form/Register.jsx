@@ -7,6 +7,7 @@ const Register = ({ onClick }) => {
   const handleHidePassword = () => {
     setHidePassword(!hidePassword);
   };
+  document.title = "Đăng Ký Tài Khoản";
   return (
     <Formik
       initialValues={{
@@ -27,7 +28,7 @@ const Register = ({ onClick }) => {
       }}>
       {(formik) => (
         <Form
-          className="w-full max-w-[400px] mx-auto font-poppins"
+          className="w-full max-w-[400px] mx-auto font-poppins p-5 rounded-lg bg-[#111111]"
           autoComplete="off">
           <div className="flex flex-col gap-2 mb-5">
             <Field
@@ -35,7 +36,7 @@ const Register = ({ onClick }) => {
               type="text"
               placeholder="Email"
               required
-              className="p-3 rounded-xl outline-none border-2 border-gray-100 focus:border-primary text-black"></Field>
+              className="p-3 rounded-lg outline-none border focus:border-purple-600 text-black"></Field>
             <div className="text-sm text-red-500 font-medium">
               <ErrorMessage name="email"></ErrorMessage>
             </div>
@@ -46,7 +47,7 @@ const Register = ({ onClick }) => {
                 name="password"
                 type={hidePassword ? "password" : "text"}
                 placeholder="Mật khẩu"
-                className="p-3 rounded-xl outline-none border-2 border-gray-100 focus:border-primary text-black w-full"></Field>
+                className="p-3 rounded-lg outline-none border focus:border-purple-600 text-black w-full"></Field>
               <div className="absolute right-0 top-2/4 -translate-y-2/4 mr-5">
                 <div className="flex items-center justify-center relative">
                   <svg
@@ -84,10 +85,10 @@ const Register = ({ onClick }) => {
               <ErrorMessage name="password"></ErrorMessage>
             </div>
           </div>
-          <div className="mb-0">
+          <div className="mb-10">
             <button
               type="submit"
-              className={`w-full flex items-center justify-center p-3 bg-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all`}
+              className={`w-full flex items-center justify-center p-3 bg-primary text-white font-semibold rounded-lg hover:opacity-90 transition-all`}
               disabled={formik.isSubmitting}>
               {formik.isSubmitting ? "" : "Đăng ký"}
               <span
@@ -97,6 +98,14 @@ const Register = ({ onClick }) => {
                     : ""
                 }`}></span>
             </button>
+          </div>
+          <div className="flex items-center justify-center gap-x-2 font-medium text-sm">
+            <span>Bạn đã có tài khoản?</span>
+            <span
+              className="text-blue-600 cursor-pointer hover:opacity-70"
+              onClick={onClick}>
+              Đăng nhập ngay
+            </span>
           </div>
         </Form>
       )}

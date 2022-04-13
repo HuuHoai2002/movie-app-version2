@@ -93,17 +93,17 @@ const WatchingTvSeries = () => {
           </TabList>
           <TabPanel value="1">
             <div className="flex flex-col gap-y-5">
-              <div className="flex items-center gap-x-10">
+              <div className="flex flex-col gap-5">
                 <h1 className="text-xl font-medium text-purple-600">Phần: </h1>
-                <div>
+                <div className="flex-1">
                   {infoMovie && (
-                    <div>
+                    <div className="flex flex-wrap items-center gap-2">
                       {new Array(infoMovie.number_of_seasons)
                         .fill(0)
                         .map((item, index) => (
                           <span
                             key={item + index}
-                            className={`py-2 px-5 rounded-lg bg-[#111111] font-semibold mr-5 ${
+                            className={`hover:opacity-70 w-[60px] h-[30px] flex items-center justify-center rounded-lg bg-[#111111] font-semibold ${
                               index === changeSeason ? "text-red-500" : ""
                             }`}
                             onClick={() => setChangeSeason(index)}>
@@ -125,7 +125,7 @@ const WatchingTvSeries = () => {
                         totalSeason.map((item, index) => (
                           <span
                             key={item.id}
-                            className={`rounded-lg w-[60px] h-[30px] flex items-center justify-center text-[15px] bg-[#111111] font-semibold ${
+                            className={`hover:opacity-70 rounded-lg w-[60px] h-[30px] flex items-center justify-center text-[15px] bg-[#111111] font-semibold ${
                               index === changeEpisode ? "text-red-500" : ""
                             }`}
                             onClick={() => setChangeEpisode(index)}>
@@ -145,7 +145,7 @@ const WatchingTvSeries = () => {
           </TabPanel>
           <TabPanel value="2">
             <UserComments reviews={reviews}></UserComments>
-            <div className="my-5">
+            <div>
               <TVSeriesRecomments
                 movieID={movieID}
                 text="Gợi Ý"></TVSeriesRecomments>

@@ -5,6 +5,7 @@ import BannerTvSeriesDetails from "../Banner/BannerTvSeriesDetails";
 
 const TvSeriesDetails = () => {
   const { movieID } = useParams();
+  document.title = "Chi tiết phim";
   return (
     <div className="w-full h-full">
       <BannerTvSeriesDetails movieID={movieID}></BannerTvSeriesDetails>

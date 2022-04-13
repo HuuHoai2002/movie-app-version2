@@ -1,41 +1,17 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useMovies } from "../../contexts/MovieContext";
 import useClickOutSide from "../../hooks/useClickOutSide";
 import Button from "../Button/Button";
+import { ListLink } from "./ListLink";
 
-const ListLink = [
-  {
-    id: 1,
-    name: "Trang Chủ",
-    to: "/",
-    title: "Trang Chủ",
-  },
-  {
-    id: 2,
-    name: "Phim Chiếu Rạp",
-    to: "/movies",
-    title: "Phim Chiếu Rạp",
-  },
-  {
-    id: 3,
-    name: "Phim Bộ",
-    to: "/tvseries",
-    title: "Phim Bộ",
-  },
-  {
-    id: 4,
-    name: "Danh Sách Của Tôi",
-    to: "/mylist",
-    title: "Danh Sách Của Tôi",
-  },
-];
 const Header = () => {
   const [background, setBackground] = useState(false);
   const { show, setShow, nodeRef } = useClickOutSide();
   // get Notifications
   const { notifications } = useMovies();
-
+  // natigate authencation
+  const handleNavigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 100) {
@@ -126,48 +102,55 @@ const Header = () => {
               </div>
               {show && (
                 <div
-                  className={`absolute bg-[#0e141a] w-[400px] top-10 right-0 rounded-lg p-3 border border-[#212225]`}>
+                  className={`absolute bg-[#111111] w-[400px] top-10 right-0 rounded-lg p-3 border border-[#212225] animation-noti`}>
                   <h1 className="font-medium mb-3 text-blue-500">Thông Báo</h1>
                   <div className="w-full">
-                    {notifications.length > 0 &&
+                    {notifications.length > 0 ? (
                       notifications.map((noti) => (
                         <div className="text-sm mb-2" key={noti.id}>
                           {noti.Title}
                         </div>
-                      ))}
+                      ))
+                    ) : (
+                      <div>Hiện tại chưa có thông báo nào</div>
+                    )}
                   </div>
                 </div>
               )}
             </div>
-            <div className="cursor-pointer">
-              <Button text={"Premium"}></Button>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <div className="w-10 h-10">
-                <img
-                  src="https://cdn.dribbble.com/users/2400293/screenshots/16758868/media/8a20438ee0cbb3ffaa0108523e7e1875.png?compress=1&resize=1200x900&vertical=top"
-                  alt=""
-                  className="w-full h-full rounded-full"
-                />
-              </div>
-              <div className="flex items-center gap-x-1">
-                <h1 className="text-whiten font-semibold">Huu Hoai</h1>
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}>
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
+            <div>
+              {/* <div className="flex items-center gap-x-2">
+                <div className="w-10 h-10">
+                  <img
+                    src="https://cdn.dribbble.com/users/2400293/screenshots/16758868/media/8a20438ee0cbb3ffaa0108523e7e1875.png?compress=1&resize=1200x900&vertical=top"
+                    alt=""
+                    className="w-full h-full rounded-full"
+                  />
                 </div>
-              </div>
+                <div className="flex items-center gap-x-1">
+                  <h1 className="text-whiten font-semibold">Huu Hoai</h1>
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div> */}
+              <Link to={"/auth"}>
+                <Button
+                  text={"Đăng Nhập"}
+                  className="bg-transparent border-2 border-primary text-sm hover:bg-primary hover:opacity-100 transition-all"></Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -29,8 +29,7 @@ const MovieRecomments = ({ text = "", movieID, page = 1 }) => {
   return (
     <div className="overflow-hidden">
       <Fragment>
-        <div className="flex items-center gap-x-5">
-          <h1 className="text-xl font-medium py-5">{text}</h1>
+        <div className="flex items-center gap-x-5 pb-5">
           <div className="flex items-center gap-x-2">
             <Tooltip title="Trang trước" placement="top">
               <svg

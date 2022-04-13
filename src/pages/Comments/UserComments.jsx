@@ -11,7 +11,7 @@ const UserComments = ({ reviews }) => {
   return (
     <div className="flex flex-col gap-y-5 w-full max-w-[70%]">
       <div>
-        <h1 className="text-xl font-medium">Bình Luận</h1>
+        <h1 className="text-xl font-medium text-primary">Bình Luận</h1>
       </div>
       {reviews && reviews.length > 0 ? (
         reviews.map((item) => (

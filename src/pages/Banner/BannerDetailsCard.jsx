@@ -48,8 +48,8 @@ const BannerDetailsCard = ({ data, cast, isTivi = false }) => {
                 <span>Thời lượng: {runtime} phút</span>
               ) : (
                 <span>
-                  Số tập: {data.number_of_episodes} , Số phần:{" "}
-                  {data.number_of_seasons}
+                  Số tập: {data.number_of_episodes} , {data.number_of_seasons}{" "}
+                  Phần
                 </span>
               )}
             </div>

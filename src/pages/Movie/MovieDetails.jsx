@@ -4,6 +4,7 @@ import BannerMovieDetails from "../Banner/BannerMovieDetails";
 import MovieSimilar from "../../components/Movie/MovieSimilar";
 const MovieDetails = () => {
   const { movieID } = useParams();
+  document.title = "Chi Tiết";
   return (
     <div className="w-full h-full">
       <BannerMovieDetails movieID={movieID}></BannerMovieDetails>

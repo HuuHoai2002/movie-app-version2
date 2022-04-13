@@ -46,7 +46,7 @@ const BannerCard = ({ data, isActive, isTivi = false }) => {
               {overview || "Chưa có"}
             </span>
             <span
-              className="flex items-center gap-x-2 text-[15px] font-medium leading-4 text-[#239D61] underline cursor-pointer group"
+              className="flex items-center gap-x-2 text-[15px] leading-6 font-medium text-[#239D61] underline cursor-pointer group"
               onClick={() =>
                 handleNavigate(`${isTivi ? "tvserie" : "movie"}`, id)
               }>

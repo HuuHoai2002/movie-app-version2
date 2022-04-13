@@ -7,6 +7,7 @@ const Login = ({ onClick }) => {
   const handleHidePassword = () => {
     setHidePassword(!hidePassword);
   };
+  document.title = "Đăng Nhập";
   return (
     <Formik
       initialValues={{
@@ -27,7 +28,7 @@ const Login = ({ onClick }) => {
       }}>
       {(formik) => (
         <Form
-          className="w-full max-w-[400px] mx-auto font-poppins"
+          className="w-full max-w-[400px] mx-auto font-poppins bg-[#111111] p-5 rounded-lg"
           autoComplete="off">
           <div className="flex flex-col gap-2 mb-5">
             <Field
@@ -35,7 +36,7 @@ const Login = ({ onClick }) => {
               type="text"
               placeholder="Email"
               required
-              className="p-3 rounded-xl outline-none border-2 border-gray-100 focus:border-primary text-black"></Field>
+              className="p-3 rounded-lg outline-none border focus:border-purple-500 placeholder:font-medium text-black"></Field>
             <div className="text-sm text-red-500 font-medium">
               <ErrorMessage name="email"></ErrorMessage>
             </div>
@@ -46,7 +47,7 @@ const Login = ({ onClick }) => {
                 name="password"
                 type={hidePassword ? "password" : "text"}
                 placeholder="Mật khẩu"
-                className="p-3 rounded-xl outline-none border-2 border-gray-100 focus:border-primary text-black w-full"></Field>
+                className="p-3 rounded-lg outline-none border focus:border-purple-500 placeholder:font-medium text-black w-full"></Field>
               <div className="absolute right-0 top-2/4 -translate-y-2/4 mr-5">
                 <div className="flex items-center justify-center relative">
                   <svg
@@ -87,7 +88,7 @@ const Login = ({ onClick }) => {
           <div className="mb-0">
             <button
               type="submit"
-              className={`w-full flex items-center justify-center p-3 bg-primary text-white font-semibold rounded-xl hover:opacity-90 transition-all`}
+              className={`w-full flex items-center justify-center p-3 bg-primary text-white font-semibold rounded-lg hover:opacity-90 transition-all`}
               disabled={formik.isSubmitting}>
               {formik.isSubmitting ? "" : "Đăng nhập"}
               <span
@@ -107,22 +108,24 @@ const Login = ({ onClick }) => {
               <span className="flex-1 border-t border-primary opacity-70 mr-5"></span>
             </div>
             <div className="flex items-center justify-between mx-4 gap-x-5">
-              <div className="flex items-center justify-between cursor-pointer flex-1">
+              <div className="flex items-center justify-between cursor-pointer flex-1 hover:opacity-50">
                 <div className="w-full h-12 border-2 border-white flex items-center justify-center rounded-xl">
                   <img
                     src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
                     alt=""
                     className="w-8 h-8"
                   />
+                  <span>Google</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between  cursor-pointer flex-1">
+              <div className="flex items-center justify-between  cursor-pointer flex-1 hover:opacity-50">
                 <div className="w-full h-12 border-2 border-white flex items-center justify-center rounded-xl">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/600px-Facebook_Logo_%282019%29.png"
                     alt=""
                     className="w-6 h-6"
                   />
+                  <span className="ml-[5px]">Facebook</span>
                 </div>
               </div>
             </div>
