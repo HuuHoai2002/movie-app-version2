@@ -8,6 +8,7 @@ import MoviePage from "./pages/Movie/MoviePage";
 import TvSeriesDetails from "./pages/TvSeries/TvSeriesDetails";
 import TvSeriesPage from "./pages/TvSeries/TvSeriesPage";
 import WatchingMovie from "./pages/Watch/WatchingMovie";
+import WatchingTvSeries from "./pages/Watch/WatchingTvSeries";
 
 const App = () => {
   return (
@@ -15,7 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Header></Header>}>
           <Route path="/" element={<HomePage></HomePage>}></Route>
-          <Route path="movie" element={<MoviePage></MoviePage>}></Route>
+          <Route path="movies" element={<MoviePage></MoviePage>}></Route>
           <Route
             path="movie/:movieID"
             element={<MovieDetails></MovieDetails>}></Route>
@@ -28,6 +29,10 @@ const App = () => {
           <Route
             path="tvserie/:movieID"
             element={<TvSeriesDetails></TvSeriesDetails>}></Route>
+          <Route
+            path="watchtv/:movieID"
+            element={<WatchingTvSeries></WatchingTvSeries>}></Route>
+          <Route path="mylist" element={<div>My List...</div>}></Route>
         </Route>
         <Route path="auth" element={<Form></Form>}></Route>
       </Routes>

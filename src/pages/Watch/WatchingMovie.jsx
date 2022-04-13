@@ -2,10 +2,23 @@ import React, { useCallback, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { IMAGE_PATH, movieApi } from "../../api/Api";
 import MovieRecomments from "../../components/Movie/MovieRecomments";
+import { useMovies } from "../../contexts/MovieContext";
 
 const WatchingMovie = () => {
   const { movieID } = useParams();
+  const { handleSetTitle } = useMovies();
   const [reviews, setReviews] = React.useState(null);
+  const handleGetTvSeriesDetails = useCallback(
+    async (movieID) => {
+      try {
+        const response = await movieApi.getMovieDetails(movieID);
+        handleSetTitle(response?.title);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [handleSetTitle]
+  );
   const handleGetMovieReviews = useCallback(async (movieID) => {
     try {
       const response = await movieApi.getMovieReviews(movieID);
@@ -17,7 +30,8 @@ const WatchingMovie = () => {
 
   useEffect(() => {
     handleGetMovieReviews(movieID);
-  }, [handleGetMovieReviews, movieID]);
+    handleGetTvSeriesDetails(movieID);
+  }, [handleGetMovieReviews, handleGetTvSeriesDetails, movieID]);
   console.log(reviews);
   const checkUrl = (url) => {
     return url.includes("https://" || "http://" || "www://");
@@ -76,7 +90,6 @@ const WatchingMovie = () => {
             <div>Bộ phim này chưa có bình luận nào...</div>
           )}
         </div>
-
         <div className="my-5">
           <MovieRecomments movieID={movieID} text="Gợi Ý"></MovieRecomments>
         </div>

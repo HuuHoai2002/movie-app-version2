@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 export default function useClickOutSide(dom = "button") {
   const [show, setShow] = useState(false);
 
-  console.log(show);
   const nodeRef = useRef(null);
   useEffect(() => {
     const handleClickOutSide = (event) => {

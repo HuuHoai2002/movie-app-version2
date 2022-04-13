@@ -68,10 +68,10 @@ export const tiviSeriesApi = {
       )
     ).data;
   },
-  async getTiviSeriesReviews(tiviID) {
+  async getTiviSeriesReviews(tiviID, page = 1) {
     return await (
       await axios.get(
-        `${API_TIVI}${tiviID}/reviews?api_key=${API_KEY}&language=vi`
+        `${API_TIVI}${tiviID}/reviews?api_key=${API_KEY}&page=${page}`
       )
     ).data;
   },
@@ -79,6 +79,20 @@ export const tiviSeriesApi = {
     return await (
       await axios.get(
         `${API_TIVI}${tiviID}/similar?api_key=${API_KEY}&language=vi&page=${page}`
+      )
+    ).data;
+  },
+  async getTiviSeriesRecomments(movieID, page = 1) {
+    return await (
+      await axios.get(
+        `${API_TIVI}${movieID}/recommendations?api_key=${API_KEY}&language=vi&page=${page}`
+      )
+    ).data;
+  },
+  async getTiviSeriesSeason(movieID, season = 1) {
+    return await (
+      await axios.get(
+        `https://api.themoviedb.org/3/tv/${movieID}/season/${season}?api_key=${API_KEY}&language=en-US`
       )
     ).data;
   },

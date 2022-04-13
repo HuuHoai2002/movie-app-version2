@@ -5,7 +5,7 @@ const MoviePage = () => {
   document.title = "Phim Chiếu Rạp";
   return (
     <Fragment>
-      <Banner type="popular" page={5}></Banner>
+      <Banner type="popular" page={3}></Banner>
     </Fragment>
   );
 };

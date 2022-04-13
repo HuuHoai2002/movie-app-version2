@@ -14,7 +14,7 @@ const ListLink = [
   {
     id: 2,
     name: "Phim Chiếu Rạp",
-    to: "/movie",
+    to: "/movies",
     title: "Phim Chiếu Rạp",
   },
   {

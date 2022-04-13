@@ -19,8 +19,8 @@ const MovieProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
 
-  const handleSetTitle = ({ title = "" }) => {
-    document.title = title;
+  const handleSetTitle = (title = "") => {
+    document.title = `Đang Xem: ${title}`;
   };
 
   // store firebase

@@ -19,7 +19,7 @@ const BannerDetailsCard = ({ data, cast, isTivi = false }) => {
   return (
     <div className="relative">
       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-[rgba(0,0,0,0.8)]"></div>
-      <div className="w-full h-full">
+      <div className="w-full h-[50.5vw]">
         <img
           src={`${IMAGE_PATH}${backdrop_path}`}
           alt=""

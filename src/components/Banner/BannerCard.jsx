@@ -15,11 +15,11 @@ const BannerCard = ({ data, isActive, isTivi = false }) => {
   return (
     <div className="relative">
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,1)]"></div>
-      <div className="w-full h-full">
+      <div className="w-full h-[50.5vw]">
         <img
           src={`${IMAGE_PATH}${backdrop_path}`}
           alt=""
-          className="banner-image w-full h-full object-cover"
+          className="w-full h-full object-cover"
         />
       </div>
       <div
