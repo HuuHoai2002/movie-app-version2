@@ -9,7 +9,7 @@ import ButtonPlay from "../Button/ButtonPlay";
 import ButtonStar from "../Button/ButtonStar";
 
 const BannerCard = ({ data, isActive, isTivi = false }) => {
-  const { handleNavigate } = useMovies();
+  const { handleNavigate, dispatchCarts } = useMovies();
   const { id, overview, backdrop_path, release_date, vote_average, title } =
     data;
   return (
@@ -68,7 +68,10 @@ const BannerCard = ({ data, isActive, isTivi = false }) => {
             <div className="mt-5 flex items-center gap-x-5">
               <Tooltip title="Thêm vào danh sách" placement="top">
                 <div>
-                  <ButtonAdd></ButtonAdd>
+                  <ButtonAdd
+                    onClick={() =>
+                      dispatchCarts({ type: "ADD", payload: data, id: data.id })
+                    }></ButtonAdd>
                 </div>
               </Tooltip>
               <Tooltip title="Tải về máy" placement="top">

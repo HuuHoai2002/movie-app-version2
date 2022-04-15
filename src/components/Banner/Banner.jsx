@@ -9,6 +9,7 @@ const Banner = ({ type = "popular", page = 1 }) => {
   const [movieBanner, setMovieBanner] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeSlide, setActiveSlide] = useState(0);
+
   useEffect(() => {
     const handleCallAPI = async () => {
       try {

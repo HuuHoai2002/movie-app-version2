@@ -27,7 +27,7 @@ const MovieList = ({ text = "", type = "", page = 1 }) => {
     setChangePage((page) => page - 1);
   }, []);
   return (
-    <div className="container-movie overflow-hidden">
+    <div className="container-movie overflow-hidden scroll-smooth">
       {movie && movie.length > 0 && (
         <Fragment>
           <div className="flex items-center gap-x-5">

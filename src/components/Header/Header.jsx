@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useMovies } from "../../contexts/MovieContext";
 import useClickOutSide from "../../hooks/useClickOutSide";
@@ -6,12 +6,30 @@ import Button from "../Button/Button";
 import { ListLink } from "./ListLink";
 
 const Header = () => {
+  //background
   const [background, setBackground] = useState(false);
-  const { show, setShow, nodeRef } = useClickOutSide();
-  // get Notifications
-  const { notifications } = useMovies();
-  // natigate authencation
+
+  //input
+  const [activeInput, setActiveInput] = useState(false);
+  const inputRef = useRef();
+  useEffect(() => {
+    if (activeInput) {
+      inputRef.current.focus();
+    }
+  }, [activeInput]);
+  //Search
   const handleNavigate = useNavigate();
+  const [values, setValues] = useState("");
+  const handleClick = () => {
+    setActiveInput(!activeInput);
+    if (values) {
+      handleNavigate(`search/${values}`);
+      setValues("");
+    }
+  };
+  //Notifications
+  const { show, setShow, nodeRef } = useClickOutSide();
+  const { notifications } = useMovies();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 100) {
@@ -21,11 +39,18 @@ const Header = () => {
       }
     };
     window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
   const activeLink = ({ isActive }) =>
     isActive
       ? "text-white transition-all"
       : "hover:text-white hover:opacity-80 transition-all";
+
+  // user login
+  const { userInfo } = useMovies();
   return (
     <Fragment>
       <div
@@ -69,11 +94,22 @@ const Header = () => {
             ))}
           </div>
           <div className="flex items-center gap-x-7">
-            <div className="cursor-pointer">
+            <div className="cursor-pointer flex items-center gap-x-2 relative">
+              <input
+                type="search"
+                ref={inputRef}
+                value={values}
+                onChange={(e) => setValues(e.target.value)}
+                className={`px-3 py-[6px] bg-transparent outline-none rounded-xl border border-secondary focus:border-primary transition-all ${
+                  activeInput ? "" : "hidden"
+                }`}
+                placeholder="Tìm kiếm..."
+              />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-6 w-6 absolute right-3"
                 viewBox="0 0 20 20"
+                onClick={handleClick}
                 fill="currentColor">
                 <path
                   fillRule="evenodd"
@@ -119,38 +155,43 @@ const Header = () => {
               )}
             </div>
             <div>
-              {/* <div className="flex items-center gap-x-2">
-                <div className="w-10 h-10">
-                  <img
-                    src="https://cdn.dribbble.com/users/2400293/screenshots/16758868/media/8a20438ee0cbb3ffaa0108523e7e1875.png?compress=1&resize=1200x900&vertical=top"
-                    alt=""
-                    className="w-full h-full rounded-full"
-                  />
-                </div>
-                <div className="flex items-center gap-x-1">
-                  <h1 className="text-whiten font-semibold">Huu Hoai</h1>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}>
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
+              {userInfo ? (
+                <div className="flex items-center gap-x-2">
+                  <div className="w-10 h-10">
+                    <img
+                      src="https://cdn.dribbble.com/users/2400293/screenshots/16758868/media/8a20438ee0cbb3ffaa0108523e7e1875.png?compress=1&resize=1200x900&vertical=top"
+                      alt=""
+                      className="w-full h-full rounded-full"
+                    />
+                  </div>
+                  <div className="flex items-center gap-x-1">
+                    <h1 className="text-whiten font-semibold">
+                      {userInfo?.displayName}
+                    </h1>
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-              </div> */}
-              <Link to={"/auth"}>
-                <Button
-                  text={"Đăng Nhập"}
-                  className="bg-transparent border-2 border-primary text-sm hover:bg-primary hover:opacity-100 transition-all"></Button>
-              </Link>
+              ) : (
+                <Link to={"/auth"}>
+                  <Button
+                    text={"Đăng Nhập"}
+                    className="bg-transparent border-2 border-primary text-sm hover:bg-primary hover:opacity-100 transition-all"></Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

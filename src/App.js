@@ -1,6 +1,7 @@
 import React, { Fragment, lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading/Loading";
+import { useMovies } from "./contexts/MovieContext";
 
 const Header = lazy(() => import("./components/Header/Header"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -13,8 +14,10 @@ const WatchingTvSeries = lazy(() => import("./pages/Watch/WatchingTvSeries"));
 const MyList = lazy(() => import("./pages/MyList/MyList"));
 const FormAuth = lazy(() => import("./pages/Form/FormAuth"));
 const PageNotFound = lazy(() => import("./pages/NotFound/PageNotFound"));
+const SearchKeyword = lazy(() => import("./pages/Search/SearchKeyword"));
 
 const App = () => {
+  const { userInfo } = useMovies();
   return (
     <Fragment>
       <Suspense fallback={<Loading />}>
@@ -38,9 +41,16 @@ const App = () => {
               path="watchtv/:movieID"
               element={<WatchingTvSeries></WatchingTvSeries>}></Route>
             <Route path="mylist" element={<MyList></MyList>}></Route>
-            <Route path="auth" element={<FormAuth></FormAuth>}></Route>
+            <Route
+              path="search/:keyword"
+              element={<SearchKeyword></SearchKeyword>}></Route>
             <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
           </Route>
+          <Route
+            path="auth"
+            element={
+              userInfo ? <Navigate to={"/"} /> : <FormAuth></FormAuth>
+            }></Route>
         </Routes>
       </Suspense>
     </Fragment>

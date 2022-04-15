@@ -3,13 +3,23 @@ import axios from "axios";
 const API_KEY = "26a7d8afe9f82facc441f01c4235b0a5";
 const API_MOVIE = "https://api.themoviedb.org/3/movie/";
 const API_TIVI = "https://api.themoviedb.org/3/tv/";
+const API_MOVIE_SEARCH = "https://api.themoviedb.org/3/search/movie/";
+const API_TIVI_SEARCH = "https://api.themoviedb.org/3/search/tv/";
 export const API_TRENDING =
   "https://api.themoviedb.org/3/trending/all/day?api_key=26a7d8afe9f82facc441f01c4235b0a5";
+
 export const movieApi = {
   async getMovie(type, page = 1) {
     return await (
       await axios.get(
         `${API_MOVIE}${type}?api_key=${API_KEY}&language=vi&page=${page}`
+      )
+    ).data;
+  },
+  async getMovieWithSearch(query = "", page = 1) {
+    return await (
+      await axios.get(
+        `${API_MOVIE_SEARCH}?api_key=${API_KEY}&query=${query}&language=vi&page=${page}`
       )
     ).data;
   },
@@ -53,6 +63,13 @@ export const tiviSeriesApi = {
     return await (
       await axios.get(
         `${API_TIVI}${type}?api_key=${API_KEY}&language=vi&page=${page}`
+      )
+    ).data;
+  },
+  async getTiviSeriesWithSearch(query = "", page = 1) {
+    return await (
+      await axios.get(
+        `${API_TIVI_SEARCH}?api_key=${API_KEY}&query=${query}&language=vi&page=${page}`
       )
     ).data;
   },
@@ -100,3 +117,11 @@ export const tiviSeriesApi = {
 
 export const IMAGE_PATH = "https://image.tmdb.org/t/p/original/";
 export const IMAGE_PATH_500 = "https://image.tmdb.org/t/p/w500/";
+
+export const searchWithKeyword = async (keyword, page = 1) => {
+  return await (
+    await axios.get(
+      `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${keyword}&language=vi&page=${page}`
+    )
+  ).data;
+};

@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useMovies } from "../../contexts/MovieContext";
 
 const Register = ({ onClick }) => {
+  document.title = "Đăng Ký Tài Khoản";
   const [hidePassword, setHidePassword] = useState(true);
   const handleHidePassword = () => {
     setHidePassword(!hidePassword);
   };
-  document.title = "Đăng Ký Tài Khoản";
+
+  const { userInfo, handleRegister, handleSignOut, errorRegister } =
+    useMovies();
+  console.log(userInfo?.email);
   return (
     <Formik
       initialValues={{
         email: "",
         password: "",
+        name: "",
       }}
       validationSchema={Yup.object({
         email: Yup.string()
@@ -21,15 +27,26 @@ const Register = ({ onClick }) => {
         password: Yup.string()
           .min(8, "Mật khẩu phải tối thiểu 8 ký tự")
           .required("Bắt buộc"),
+        name: Yup.string()
+          .required("Bắt buộc")
+          .max(25, "Tên của bạn quá dài :))"),
       })}
       onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 3000));
-        console.log(values);
+        await handleRegister(values);
       }}>
       {(formik) => (
-        <Form
-          className="w-full max-w-[400px] mx-auto font-poppins p-5 rounded-lg bg-[#111111]"
-          autoComplete="off">
+        <Form className="w-full max-w-[400px] mx-auto font-poppins p-5 rounded-lg bg-[#111111]">
+          <div className="flex flex-col gap-2 mb-5">
+            <Field
+              name="name"
+              type="text"
+              placeholder="Tên của bạn"
+              required
+              className="p-3 rounded-lg outline-none border focus:border-purple-600 text-black"></Field>
+            <div className="text-sm text-red-500 font-medium">
+              <ErrorMessage name="name"></ErrorMessage>
+            </div>
+          </div>
           <div className="flex flex-col gap-2 mb-5">
             <Field
               name="email"
@@ -85,7 +102,7 @@ const Register = ({ onClick }) => {
               <ErrorMessage name="password"></ErrorMessage>
             </div>
           </div>
-          <div className="mb-10">
+          <div className="mb-5">
             <button
               type="submit"
               className={`w-full flex items-center justify-center p-3 bg-primary text-white font-semibold rounded-lg hover:opacity-90 transition-all`}
@@ -98,6 +115,11 @@ const Register = ({ onClick }) => {
                     : ""
                 }`}></span>
             </button>
+            {errorRegister && (
+              <div className="text-sm text-red-500 text-center font-medium mt-2">
+                Email đã được sử dụng vui lòng đổi email khác!
+              </div>
+            )}
           </div>
           <div className="flex items-center justify-center gap-x-2 font-medium text-sm">
             <span>Bạn đã có tài khoản?</span>
@@ -106,6 +128,7 @@ const Register = ({ onClick }) => {
               onClick={onClick}>
               Đăng nhập ngay
             </span>
+            <button onClick={handleSignOut}>Đăng xuất</button>
           </div>
         </Form>
       )}

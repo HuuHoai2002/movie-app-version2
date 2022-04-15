@@ -11,7 +11,7 @@ export default function FormAuth() {
   };
 
   return (
-    <div className="container-watch w-full mx-auto flex flex-col gap-y-5">
+    <div className="container mt-5 w-full mx-auto flex flex-col gap-y-5">
       <TabContext value={value}>
         <TabList onChange={handleChange} centered>
           <Tab label="Đăng Nhập" value="1" />

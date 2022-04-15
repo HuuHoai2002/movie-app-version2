@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useMovies } from "../../contexts/MovieContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onClick }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -8,6 +10,11 @@ const Login = ({ onClick }) => {
     setHidePassword(!hidePassword);
   };
   document.title = "Đăng Nhập";
+  const { handleLogin, errorLogin, userInfo } = useMovies();
+  const navigate = useNavigate();
+  const handleNavigate = async () => {
+    navigate("/");
+  };
   return (
     <Formik
       initialValues={{
@@ -23,13 +30,11 @@ const Login = ({ onClick }) => {
           .required("Bắt buộc"),
       })}
       onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 3000));
-        console.log(values);
+        await handleLogin(values);
+        if (!errorLogin && userInfo) await handleNavigate();
       }}>
       {(formik) => (
-        <Form
-          className="w-full max-w-[400px] mx-auto font-poppins bg-[#111111] p-5 rounded-lg"
-          autoComplete="off">
+        <Form className="w-full max-w-[400px] mx-auto font-poppins bg-[#111111] p-5 rounded-lg">
           <div className="flex flex-col gap-2 mb-5">
             <Field
               name="email"
@@ -98,6 +103,11 @@ const Login = ({ onClick }) => {
                     : ""
                 }`}></span>
             </button>
+            {errorLogin && (
+              <div className="text-sm text-red-500 text-center font-medium mt-2">
+                Email hoặc mật khẩu không chính xác vui lòng kiểm tra lại
+              </div>
+            )}
           </div>
           <div className="my-10">
             <div className="flex items-center justify-center mb-10">
