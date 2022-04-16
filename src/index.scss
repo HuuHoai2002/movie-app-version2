@@ -20,9 +20,6 @@
       @apply rounded-lg bg-purple-400;
     }
   }
-  #root {
-    overflow: hidden;
-  }
 }
 
 @layer components {
@@ -43,6 +40,14 @@
     text-overflow: ellipsis;
     word-break: break-word;
   }
+}
+.title-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
 }
 .swiper-pagination-bullet {
   @apply bg-secondary;

@@ -42,7 +42,7 @@ const App = () => {
               element={<WatchingTvSeries></WatchingTvSeries>}></Route>
             <Route path="mylist" element={<MyList></MyList>}></Route>
             <Route
-              path="search/:keyword"
+              path="search"
               element={<SearchKeyword></SearchKeyword>}></Route>
             <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
           </Route>

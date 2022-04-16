@@ -7,13 +7,14 @@ const MovieCard = ({ data, isTivi = false }) => {
   const { id, poster_path } = data;
   const { handleNavigate } = useMovies();
   return (
-    <div className="relative overflow-hidden group cursor-pointer rounded-lg">
-      <div
-        onClick={() => handleNavigate(`${isTivi ? "tvserie" : "movie"}`, id)}>
+    <div
+      className="relative overflow-hidden group cursor-pointer rounded-lg flex flex-col gap-y-2"
+      onClick={() => handleNavigate(`${isTivi ? "tvserie" : "movie"}`, id)}>
+      <div>
         <img
           src={`${IMAGE_PATH}${poster_path}`}
           alt=""
-          className="w-full h-[250px] rounded-lg transition-all group-hover:scale-105"
+          className="w-full h-[250px] rounded-lg transition-all"
         />
       </div>
       {isTivi && (
@@ -23,14 +24,10 @@ const MovieCard = ({ data, isTivi = false }) => {
             className="bg-transparent bg-red-500 py-1 text-sm px-3 rounded-md hover:opacity-100"></Button>
         </div>
       )}
-      <div className="absolute bottom-2 w-full translate-y-[100px] group-hover:translate-y-[0] transition-all overflow-hidden">
-        <div className="flex items-center justify-center">
-          <Button
-            text={"Xem Ngay"}
-            onClick={() =>
-              handleNavigate(`${isTivi ? "watchtv" : "watch"}`, id)
-            }></Button>
-        </div>
+      <div className="title-truncate">
+        <h1 className="hover:text-primary font-medium transition-all text-[15px]">
+          {data.title || data.name}
+        </h1>
       </div>
     </div>
   );

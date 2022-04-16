@@ -8,28 +8,11 @@ import { ListLink } from "./ListLink";
 const Header = () => {
   //background
   const [background, setBackground] = useState(false);
-
-  //input
-  const [activeInput, setActiveInput] = useState(false);
-  const inputRef = useRef();
-  useEffect(() => {
-    if (activeInput) {
-      inputRef.current.focus();
-    }
-  }, [activeInput]);
   //Search
   const handleNavigate = useNavigate();
-  const [values, setValues] = useState("");
-  const handleClick = () => {
-    setActiveInput(!activeInput);
-    if (values) {
-      handleNavigate(`search/${values}`);
-      setValues("");
-    }
-  };
   //Notifications
   const { show, setShow, nodeRef } = useClickOutSide();
-  const { notifications } = useMovies();
+  const { notifications, handleSignOut } = useMovies();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 100) {
@@ -95,21 +78,11 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-x-7">
             <div className="cursor-pointer flex items-center gap-x-2 relative">
-              <input
-                type="search"
-                ref={inputRef}
-                value={values}
-                onChange={(e) => setValues(e.target.value)}
-                className={`px-3 py-[6px] bg-transparent outline-none rounded-xl border border-secondary focus:border-primary transition-all ${
-                  activeInput ? "" : "hidden"
-                }`}
-                placeholder="Tìm kiếm..."
-              />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 absolute right-3"
+                className="h-6 w-6"
                 viewBox="0 0 20 20"
-                onClick={handleClick}
+                onClick={() => handleNavigate("/search")}
                 fill="currentColor">
                 <path
                   fillRule="evenodd"
@@ -156,7 +129,7 @@ const Header = () => {
             </div>
             <div>
               {userInfo ? (
-                <div className="flex items-center gap-x-2">
+                <div className="flex items-center gap-x-2 relative group">
                   <div className="w-10 h-10">
                     <img
                       src="https://cdn.dribbble.com/users/2400293/screenshots/16758868/media/8a20438ee0cbb3ffaa0108523e7e1875.png?compress=1&resize=1200x900&vertical=top"
@@ -182,6 +155,27 @@ const Header = () => {
                           d="M19 9l-7 7-7-7"
                         />
                       </svg>
+                    </div>
+                  </div>
+                  <div
+                    className="absolute right-0 top-12 bg-[#111111] w-[200px] cursor-pointer hover:opacity-90 p-5 rounded-lg hidden group-hover:block before:absolute before:-top-2 before:h-2 before:w-full"
+                    onClick={handleSignOut}>
+                    <div className="flex items-center justify-start gap-x-3">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 text-primary fill-[#111111]"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        />
+                      </svg>
+                      <span className="text-primary font-medium">
+                        Đăng Xuất
+                      </span>
                     </div>
                   </div>
                 </div>
