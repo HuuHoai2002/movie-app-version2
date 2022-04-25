@@ -26,19 +26,19 @@ const App = () => {
             <Route path="/" element={<HomePage></HomePage>}></Route>
             <Route path="movies" element={<MoviePage></MoviePage>}></Route>
             <Route
-              path="movie/:movieID"
+              path="movie/:movieName/:movieID"
               element={<MovieDetails></MovieDetails>}></Route>
             <Route
-              path="watch/:movieID"
+              path="watch/:movieName/:movieID"
               element={<WatchingMovie></WatchingMovie>}></Route>
             <Route
               path="tvseries"
               element={<TvSeriesPage></TvSeriesPage>}></Route>
             <Route
-              path="tvserie/:movieID"
+              path="tvserie/:movieName/:movieID"
               element={<TvSeriesDetails></TvSeriesDetails>}></Route>
             <Route
-              path="watchtv/:movieID"
+              path="watchtv/:movieName/:movieID"
               element={<WatchingTvSeries></WatchingTvSeries>}></Route>
             <Route path="mylist" element={<MyList></MyList>}></Route>
             <Route

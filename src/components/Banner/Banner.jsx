@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { movieApi } from "../../api/Api";
 import Loading from "../Loading/Loading";
@@ -29,11 +28,7 @@ const Banner = ({ type = "popular", page = 1 }) => {
           autoplay={true}
           speed={1000}
           grabCursor={true}
-          pagination={{
-            clickable: true,
-          }}
-          onSlideChange={(e) => setActiveSlide(e.realIndex)}
-          modules={[Pagination]}>
+          onSlideChange={(e) => setActiveSlide(e.realIndex)}>
           {movieBanner.length > 0 &&
             movieBanner.map((item, index) => (
               <SwiperSlide key={item.id}>

@@ -5,7 +5,7 @@ import ButtonPlay from "../../components/Button/ButtonPlay";
 import { useMovies } from "../../contexts/MovieContext";
 
 const BannerDetailsCard = ({ data, cast, isTivi = false }) => {
-  const { handleNavigate } = useMovies();
+  const { handleNavigate, getName } = useMovies();
   const {
     backdrop_path,
     genres,
@@ -78,7 +78,14 @@ const BannerDetailsCard = ({ data, cast, isTivi = false }) => {
               text={"Xem Ngay"}
               className="font-medium py-[12px]"
               onClick={() =>
-                handleNavigate(`${isTivi ? "watchtv" : "watch"}`, id)
+                handleNavigate(
+                  `${
+                    isTivi
+                      ? `watchtv/${getName(title || data.name)}`
+                      : `watch/${getName(title || data.name)}`
+                  }`,
+                  id
+                )
               }></ButtonPlay>
           </div>
         </div>

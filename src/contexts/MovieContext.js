@@ -5,9 +5,10 @@ import React, {
   useEffect,
   useState,
   useReducer,
+  useCallback,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase/firebase-config";
+import { db } from "../firebase-app/firebase-config";
 import useLocalStorage from "../hooks/useLocalStorage";
 import {
   createUserWithEmailAndPassword,
@@ -16,15 +17,16 @@ import {
   onAuthStateChanged,
   updateProfile,
 } from "firebase/auth";
-import { firebaseAuth } from "../firebase/firebase-config";
+import { firebaseAuth } from "../firebase-app/firebase-config";
 
 const movieContext = createContext();
 
 const MovieProvider = ({ children }) => {
   const navigate = useNavigate();
-  const handleNavigate = (path, movieID) => {
+  const handleNavigate = useCallback((path, movieID) => {
     navigate(`/${path}${movieID ? "/" + movieID : ""}`);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleNavigateTV = (path, movieID, Episode) => {
     navigate(`/${path}/${movieID}/${Episode}`);
   };
@@ -36,7 +38,10 @@ const MovieProvider = ({ children }) => {
   const handleSetTitle = (title = "") => {
     document.title = `Đang Xem: ${title}`;
   };
-
+  //get name
+  const getName = (name = "") => {
+    return name.split(" ").join("-").toLowerCase();
+  };
   // store firebase
 
   //get firestore
@@ -133,6 +138,7 @@ const MovieProvider = ({ children }) => {
     handleSignOut,
     errorRegister,
     errorLogin,
+    getName,
   };
   return (
     <movieContext.Provider value={value}>{children}</movieContext.Provider>

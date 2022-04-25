@@ -27,6 +27,7 @@ const TVSeriesList = ({ text = "", type = "", page = 1 }) => {
   const handlePrePage = () => {
     setChangePage((page) => page - 1);
   };
+  const swiperRef = React.useRef(null);
   return (
     <div className="container-movie overflow-hidden">
       {movie && movie.length > 0 && (
@@ -68,11 +69,12 @@ const TVSeriesList = ({ text = "", type = "", page = 1 }) => {
               </Tooltip>
             </div>
           </div>
-          <div className="w-full rounded-lg">
+          <div className="w-full rounded-lg relative">
             <Swiper
               spaceBetween={20}
               grabCursor={"true"}
               slidesPerView={6}
+              ref={swiperRef}
               className="rounded-lg overflow-hidden">
               {movie.map((item) => (
                 <SwiperSlide key={item.id}>
@@ -80,6 +82,38 @@ const TVSeriesList = ({ text = "", type = "", page = 1 }) => {
                 </SwiperSlide>
               ))}
             </Swiper>
+            <div className="absolute top-[40%] -left-6 group">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-6 w-6 group-hover:scale-150 transition-all cursor-pointer`}
+                onClick={() => swiperRef.current.swiper.slidePrev()}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </div>
+            <div className="absolute top-[40%] -right-6 group">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-6 w-6 group-hover:scale-150 transition-all cursor-pointer`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                onClick={() => swiperRef.current.swiper.slideNext()}
+                strokeWidth={2}>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
           </div>
         </Fragment>
       )}

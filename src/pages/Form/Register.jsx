@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useMovies } from "../../contexts/MovieContext";
+import { toast } from "react-toastify";
 
 const Register = ({ onClick }) => {
   document.title = "Đăng Ký Tài Khoản";
@@ -33,6 +34,9 @@ const Register = ({ onClick }) => {
       })}
       onSubmit={async (values) => {
         await handleRegister(values);
+        toast.success("Bạn đã đăng ký tài khoản thành công!!", {
+          pauseOnHover: false,
+        });
       }}>
       {(formik) => (
         <Form className="w-full max-w-[400px] mx-auto font-poppins p-5 rounded-lg bg-[#111111]">

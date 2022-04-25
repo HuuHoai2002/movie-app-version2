@@ -4,12 +4,21 @@ import { useMovies } from "../../contexts/MovieContext";
 import Button from "../Button/Button";
 
 const MovieCard = ({ data, isTivi = false }) => {
-  const { id, poster_path } = data;
-  const { handleNavigate } = useMovies();
+  const { id, poster_path, title } = data;
+  const { handleNavigate, getName } = useMovies();
   return (
     <div
       className="relative overflow-hidden group cursor-pointer rounded-lg flex flex-col gap-y-2"
-      onClick={() => handleNavigate(`${isTivi ? "tvserie" : "movie"}`, id)}>
+      onClick={() =>
+        handleNavigate(
+          `${
+            isTivi
+              ? `tvserie/${getName(title || data.name)}`
+              : `movie/${getName(title || data.name)}`
+          }`,
+          id
+        )
+      }>
       <div>
         <img
           src={`${IMAGE_PATH}${poster_path}`}

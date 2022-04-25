@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useMovies } from "../../contexts/MovieContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Login = ({ onClick }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -31,7 +32,13 @@ const Login = ({ onClick }) => {
       })}
       onSubmit={async (values) => {
         await handleLogin(values);
-        if (!errorLogin && userInfo) await handleNavigate();
+        if (!errorLogin && userInfo) {
+          await handleNavigate();
+        } else {
+          toast.error("Thông tin bạn vừa nhập không chính xác", {
+            pauseOnHover: false,
+          });
+        }
       }}>
       {(formik) => (
         <Form className="w-full max-w-[400px] mx-auto font-poppins bg-[#111111] p-5 rounded-lg">
@@ -103,11 +110,6 @@ const Login = ({ onClick }) => {
                     : ""
                 }`}></span>
             </button>
-            {errorLogin && (
-              <div className="text-sm text-red-500 text-center font-medium mt-2">
-                Email hoặc mật khẩu không chính xác vui lòng kiểm tra lại
-              </div>
-            )}
           </div>
           <div className="my-10">
             <div className="flex items-center justify-center mb-10">
