@@ -1,12 +1,11 @@
 import axios from "axios";
 
-const API_KEY = "26a7d8afe9f82facc441f01c4235b0a5";
+const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const API_MOVIE = "https://api.themoviedb.org/3/movie/";
 const API_TIVI = "https://api.themoviedb.org/3/tv/";
 const API_MOVIE_SEARCH = "https://api.themoviedb.org/3/search/movie/";
 const API_TIVI_SEARCH = "https://api.themoviedb.org/3/search/tv/";
-export const API_TRENDING =
-  "https://api.themoviedb.org/3/trending/all/day?api_key=26a7d8afe9f82facc441f01c4235b0a5";
+export const API_TRENDING = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
 
 export const movieApi = {
   async getMovie(type, page = 1) {
