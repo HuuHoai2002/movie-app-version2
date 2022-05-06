@@ -15,7 +15,11 @@ ReactDOM.render(
     <BrowserRouter>
       <MovieProvider>
         <App />
-        <ToastContainer position="top-right" autoClose={5000} />
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          className="mt-20"
+        />
       </MovieProvider>
     </BrowserRouter>
   </React.StrictMode>,

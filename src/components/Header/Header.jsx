@@ -1,9 +1,11 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useMovies } from "../../contexts/MovieContext";
 import useClickOutSide from "../../hooks/useClickOutSide";
 import Button from "../Button/Button";
 import { ListLink } from "./ListLink";
+import UserPreview from "./UserPreview";
+import Notifications from "../Notification/Notifications";
 
 const Header = () => {
   //background
@@ -12,7 +14,7 @@ const Header = () => {
   const handleNavigate = useNavigate();
   //Notifications
   const { show, setShow, nodeRef } = useClickOutSide();
-  const { notifications, handleSignOut } = useMovies();
+  const { notifications } = useMovies();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY >= 100) {
@@ -109,78 +111,13 @@ const Header = () => {
               <div className="absolute -top-1 -right-1 w-4 h-4 rounded-3xl bg-primary text-xs flex items-center justify-center">
                 {notifications.length}
               </div>
-              {show && (
-                <div
-                  className={`absolute bg-[#111111] w-[400px] top-10 right-0 rounded-lg p-3 border border-[#212225] animation-noti`}>
-                  <h1 className="font-medium mb-3 text-blue-500">Thông Báo</h1>
-                  <div className="w-full">
-                    {notifications.length > 0 ? (
-                      notifications.map((noti) => (
-                        <div className="text-sm mb-2" key={noti.id}>
-                          {noti.Title}
-                        </div>
-                      ))
-                    ) : (
-                      <div>Hiện tại chưa có thông báo nào</div>
-                    )}
-                  </div>
-                </div>
-              )}
+              {show && <Notifications notifications={notifications} />}
             </div>
             <div>
               {userInfo ? (
-                <div className="flex items-center gap-x-2 relative group">
-                  <div className="w-10 h-10">
-                    <img
-                      src="https://cdn.dribbble.com/users/2400293/screenshots/16758868/media/8a20438ee0cbb3ffaa0108523e7e1875.png?compress=1&resize=1200x900&vertical=top"
-                      alt=""
-                      className="w-full h-full rounded-full"
-                    />
-                  </div>
-                  <div className="flex items-center gap-x-1">
-                    <h1 className="text-whiten font-semibold">
-                      {userInfo?.displayName}
-                    </h1>
-                    <div>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}>
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div
-                    className="absolute right-0 top-12 bg-[#111111] w-[200px] cursor-pointer hover:opacity-90 p-5 rounded-lg hidden group-hover:block before:absolute before:-top-2 before:h-2 before:w-full"
-                    onClick={handleSignOut}>
-                    <div className="flex items-center justify-start gap-x-3">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-primary fill-[#111111]"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}>
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                        />
-                      </svg>
-                      <span className="text-primary font-medium">
-                        Đăng Xuất
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <UserPreview data={userInfo} />
               ) : (
-                <Link to={"/auth"}>
+                <Link to={"/login"}>
                   <Button
                     text={"Đăng Nhập"}
                     className="bg-transparent border-2 border-primary text-sm hover:bg-primary hover:opacity-100 transition-all"></Button>

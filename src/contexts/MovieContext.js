@@ -1,4 +1,4 @@
-import { collection, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import React, {
   createContext,
   useContext,
@@ -18,6 +18,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { firebaseAuth } from "../firebase-app/firebase-config";
+import slugify from "slugify";
+import { toast } from "react-toastify";
 
 const movieContext = createContext();
 
@@ -40,7 +42,7 @@ const MovieProvider = ({ children }) => {
   };
   //get name
   const getName = (name = "") => {
-    return name.split(" ").join("-").toLowerCase();
+    return slugify(name.toLowerCase(), { remove: ":" });
   };
   // store firebase
 
@@ -89,8 +91,6 @@ const MovieProvider = ({ children }) => {
 
   // Firebase Auth
   const [userInfo, setUserInfo] = useState("");
-  const [errorRegister, setErrorRegister] = useState(false);
-  const [errorLogin, setErrorLogin] = useState(false);
   // Register
   const handleRegister = async ({ email, password, name }) => {
     try {
@@ -98,30 +98,48 @@ const MovieProvider = ({ children }) => {
       updateProfile(firebaseAuth.currentUser, {
         displayName: name,
       });
-      setErrorRegister(false);
+      localStorage.setItem("isLogin", "login");
+      toast.success("Bạn đã đăng ký tài khoản thành công!", {
+        pauseOnHover: false,
+      });
+      navigate("/");
+      const colRef = collection(db, "users");
+      await addDoc(colRef, {
+        email: email,
+        fullname: name,
+        password: password,
+      });
     } catch (error) {
-      console.log(error);
-      setErrorRegister(true);
+      toast.error("Email này đã được sử dụng!", { pauseOnHover: false });
     }
   };
   // Login
   const handleLogin = async ({ email, password }) => {
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
-      setErrorLogin(false);
+      toast.success("Đăng nhập thành công!", { pauseOnHover: false });
+      localStorage.setItem("isLogin", "login");
+      navigate("/");
     } catch (error) {
-      setErrorLogin(true);
+      toast.error(
+        "Email hoặc mật khẩu không chính xác vui lòng kiểm tra lại!",
+        { pauseOnHover: false }
+      );
     }
   };
   //Logout
   const handleSignOut = () => {
     signOut(firebaseAuth);
+    localStorage.setItem("isLogin", "null");
   };
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    setUserInfo(currentUser);
-  });
+  useEffect(() => {
+    onAuthStateChanged(firebaseAuth, (currentUser) => {
+      setUserInfo(currentUser);
+    });
+  }, []);
   const value = {
     handleNavigate,
+    navigate,
     handleNavigateTV,
     useLocalStorage,
     Frame_Movie_Path,
@@ -136,8 +154,6 @@ const MovieProvider = ({ children }) => {
     handleRegister,
     handleLogin,
     handleSignOut,
-    errorRegister,
-    errorLogin,
     getName,
   };
   return (

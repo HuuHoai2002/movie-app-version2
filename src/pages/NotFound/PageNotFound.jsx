@@ -6,13 +6,13 @@ const PageNotFound = () => {
   const handleNavigate = useNavigate();
   document.title = "Trang không tồn tại";
   return (
-    <div className="container mx-auto h-[50vw] flex items-center justify-center flex-col gap-y-10">
-      <img src="https://galaxyplay.vn/main/assets/img/404.svg" alt="" />
-      <div className="max-w-[500px] flex flex-col gap-y-20 items-center">
-        <h1 className="text-2xl font-medium leading-10 text-center">
-          Rất tiếc, không thể tìm thấy trang bạn mong muốn. Vui lòng kiểm tra
-          lại!
-        </h1>
+    <div className="w-full h-screen relative">
+      <img
+        src="https://cdn.dribbble.com/users/1967263/screenshots/17038882/media/9d47581e86f28a94613327a899dae45b.png"
+        alt=""
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute bottom-[80px] left-2/4 -translate-x-2/4 - translate-y-2/4">
         <Button
           text={"Về Trang Chủ"}
           className={"max-w-[200px] py-4 px-10"}
@@ -23,3 +23,8 @@ const PageNotFound = () => {
 };
 
 export default PageNotFound;
+
+// <Button
+//   text={"Về Trang Chủ"}
+//   className={"max-w-[200px] py-4 px-10"}
+//   onClick={() => handleNavigate("/")}></Button>;

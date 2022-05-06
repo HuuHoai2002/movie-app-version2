@@ -36,7 +36,7 @@ const BannerCard = ({ data, isActive, isTivi = false }) => {
           isActive ? "animation -translate-y-2/4" : "hidden"
         }`}>
         <div className="flex flex-col gap-y-3">
-          <h1 className="text-4xl leading-[50px] font-medium max-w-[450px] sm:text-xl sm:max-w-[200px] sm:leading-5">
+          <h1 className="font-facifico text-4xl leading-[50px] font-medium max-w-[450px] sm:text-xl sm:max-w-[200px] sm:leading-5">
             {title || data.name}
           </h1>
           <span className="text-secondary font-medium">
@@ -47,7 +47,7 @@ const BannerCard = ({ data, isActive, isTivi = false }) => {
         </div>
         <div className="max-w-[400px]">
           <div className="">
-            <span className="text-truncate text-base sm:hidden opacity-80">
+            <span className="text-truncate font-inter text-base sm:hidden opacity-80">
               {overview || "Chưa có"}
             </span>
             <div className="mt-5 flex items-center gap-x-5">
