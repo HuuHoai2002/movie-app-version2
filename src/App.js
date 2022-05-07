@@ -18,7 +18,10 @@ const SearchKeyword = lazy(() => import("./pages/Search/SearchKeyword"));
 const Login = lazy(() => import("./pages/Form/Login"));
 const Register = lazy(() => import("./pages/Form/Register"));
 const AccountPage = lazy(() => import("./pages/User/AccountPage"));
-
+const AdminPage = lazy(() => import("./pages/Admin/AdminPage"));
+const NotificationPage = lazy(() =>
+  import("./pages/Notifications/NotificationPage")
+);
 const App = () => {
   return (
     <Fragment>
@@ -54,6 +57,10 @@ const App = () => {
                   <AccountPage></AccountPage>
                 </ProtectedRoute>
               }></Route>
+            <Route path="/admin" element={<AdminPage />}></Route>
+            <Route
+              path="/notification/:id"
+              element={<NotificationPage />}></Route>
             <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
           </Route>
           <Route path="/login" element={<Login />}></Route>

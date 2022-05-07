@@ -76,7 +76,7 @@ const MoviePage = () => {
   }, []);
   return (
     <Fragment>
-      <Banner type="popular" page={6}></Banner>
+      <Banner type="popular" page={2}></Banner>
       <div className="container-movie min-h-[50vw]">
         <div className="my-10 flex items-center justify-between">
           <div className="flex items-center gap-x-10">
