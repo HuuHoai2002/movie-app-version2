@@ -1,10 +1,12 @@
 import React, { Fragment, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading/Loading";
+import Layout from "./pages/Layout/Layout";
+import Header from "./components/Header/Header";
 
+// lazy components
 const ProtectedRoute = lazy(() => import("./pages/Route/ProtectedRoute"));
 const ScrollToTop = lazy(() => import("./pages/ScrollToTop/ScrollToTop"));
-const Header = lazy(() => import("./components/Header/Header"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const MoviePage = lazy(() => import("./pages/Movie/MoviePage"));
 const TvSeriesPage = lazy(() => import("./pages/TvSeries/TvSeriesPage"));
@@ -25,46 +27,53 @@ const NotificationPage = lazy(() =>
 const App = () => {
   return (
     <Fragment>
+      <Header />
       <Suspense fallback={<Loading />}>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Header></Header>}>
-            <Route path="/" element={<HomePage></HomePage>}></Route>
-            <Route path="movies" element={<MoviePage></MoviePage>}></Route>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="movies" element={<MoviePage />} />
             <Route
               path="movie/:movieName/:movieID"
-              element={<MovieDetails></MovieDetails>}></Route>
+              element={<MovieDetails />}
+            />
             <Route
               path="watch/:movieName/:movieID"
-              element={<WatchingMovie></WatchingMovie>}></Route>
-            <Route
-              path="tvseries"
-              element={<TvSeriesPage></TvSeriesPage>}></Route>
+              element={<WatchingMovie />}
+            />
+            <Route path="tvseries" element={<TvSeriesPage />} />
             <Route
               path="tvserie/:movieName/:movieID"
-              element={<TvSeriesDetails></TvSeriesDetails>}></Route>
+              element={<TvSeriesDetails />}
+            />
             <Route
               path="watchtv/:movieName/:movieID"
-              element={<WatchingTvSeries></WatchingTvSeries>}></Route>
-            <Route path="mylist" element={<MyList></MyList>}></Route>
-            <Route
-              path="search"
-              element={<SearchKeyword></SearchKeyword>}></Route>
+              element={<WatchingTvSeries />}
+            />
+            <Route path="mylist" element={<MyList />} />
+            <Route path="search" element={<SearchKeyword />} />
             <Route
               path="account"
               element={
                 <ProtectedRoute>
-                  <AccountPage></AccountPage>
+                  <AccountPage />
                 </ProtectedRoute>
-              }></Route>
-            <Route path="/admin" element={<AdminPage />}></Route>
+              }
+            />
+            <Route path="/admin" element={<AdminPage />} />
             <Route
               path="/notification/:id"
-              element={<NotificationPage />}></Route>
-            <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+              element={
+                <ProtectedRoute>
+                  <NotificationPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Suspense>
     </Fragment>
