@@ -1,12 +1,7 @@
 import React, { Fragment } from "react";
-import { Outlet } from "react-router-dom";
 
-const Layout = () => {
-  return (
-    <Fragment>
-      <Outlet />
-    </Fragment>
-  );
+const Layout = ({ children }) => {
+  return <Fragment>{children}</Fragment>;
 };
 
 export default Layout;

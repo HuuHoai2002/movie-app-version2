@@ -68,7 +68,7 @@ const BannerDetailsCard = ({ data, cast, isTivi = false }) => {
           </div>
           <div className="max-w-[500px]">
             <div className="">
-              <span className="text-truncate text-lg">
+              <span className="text-truncate text-base">
                 {overview || "Bộ phim này chưa có nội dung tổng quát"}
               </span>
             </div>

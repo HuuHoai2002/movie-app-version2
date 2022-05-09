@@ -23,10 +23,10 @@ export const ListLink = [
     to: "/mylist",
     title: "Danh Sách Của Tôi",
   },
-  {
-    id: 5,
-    name: "Quản Trị Viên",
-    to: "/admin",
-    title: "Quản Trị Viên",
-  },
+  // {
+  //   id: 5,
+  //   name: "Quản Trị Viên",
+  //   to: "/admin",
+  //   title: "Quản Trị Viên",
+  // },
 ];

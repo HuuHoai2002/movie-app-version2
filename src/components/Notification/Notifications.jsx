@@ -1,10 +1,11 @@
 import React from "react";
 import { useMovies } from "../../contexts/MovieContext";
+
 const Notifications = ({ notifications }) => {
   const { navigate } = useMovies();
   return (
     <div
-      className={`absolute bg-[#111111] w-[400px] h-[300px] top-10 right-0 rounded-lg px-3 shadow-[#292c36] shadow-xl overflow-auto transition-all noti-animation 
+      className={`absolute bg-[#111111] w-[400px] max-h-[300px] top-10 right-0 rounded-lg px-3 pb-3 shadow-[#292c36] shadow-xl overflow-auto transition-all noti-animation 
       `}>
       <h1 className="font-medium p-3 text-white sticky top-0 bg-inherit">
         Thông Báo

@@ -16,7 +16,16 @@ const NotificationPage = () => {
   }, [id]);
 
   console.log(notification);
-  return <div className="container-watch"></div>;
+  return (
+    <div className="container-watch">
+      {notification && (
+        <div>
+          <span>{notification.author}</span>
+          <p>{notification.content}</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default NotificationPage;
