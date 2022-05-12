@@ -11,7 +11,7 @@ const Header = () => {
   //background
   const [background, setBackground] = useState(false);
   //Search
-  const handleNavigate = useNavigate();
+  // const handleNavigate = useNavigate();
   //Notifications
   const { show, setShow, nodeRef } = useClickOutSide();
   const { notifications } = useMovies();
@@ -30,9 +30,7 @@ const Header = () => {
   }, []);
 
   const activeLink = ({ isActive }) =>
-    isActive
-      ? "text-white transition-all"
-      : "hover:text-white hover:opacity-80 transition-all";
+    isActive ? "text-primary" : "hover:text-white hover:opacity-80";
 
   // user login
   const { userInfo } = useMovies();
@@ -79,12 +77,13 @@ const Header = () => {
             ))}
           </div>
           <div className="flex items-center gap-x-7">
-            <div className="cursor-pointer flex items-center gap-x-2 relative">
+            <NavLink
+              to="search"
+              className="cursor-pointer flex items-center gap-x-2 relative">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
                 viewBox="0 0 20 20"
-                onClick={() => handleNavigate("/search")}
                 fill="currentColor">
                 <path
                   fillRule="evenodd"
@@ -92,7 +91,7 @@ const Header = () => {
                   clipRule="evenodd"
                 />
               </svg>
-            </div>
+            </NavLink>
             <div className="cursor-pointer relative" ref={nodeRef}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

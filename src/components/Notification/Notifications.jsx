@@ -2,6 +2,7 @@ import React from "react";
 import { useMovies } from "../../contexts/MovieContext";
 
 const Notifications = ({ notifications }) => {
+  console.log(notifications);
   const { navigate } = useMovies();
   return (
     <div

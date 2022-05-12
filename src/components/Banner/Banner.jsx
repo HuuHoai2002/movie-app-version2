@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectFade } from "swiper";
 import { movieApi } from "../../api/Api";
 import Loading from "../Loading/Loading";
 import BannerCard from "./BannerCard";
@@ -28,6 +29,8 @@ const Banner = ({ type = "popular", page = 1 }) => {
           autoplay={true}
           speed={1000}
           grabCursor={true}
+          effect="fade"
+          modules={[EffectFade]}
           onSlideChange={(e) => setActiveSlide(e.realIndex)}>
           {movieBanner.length > 0 &&
             movieBanner.map((item, index) => (

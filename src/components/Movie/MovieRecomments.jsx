@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback, Fragment } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper";
 import { movieApi } from "../../api/Api";
 import MovieCard from "./MovieCard";
 import Tooltip from "@mui/material/Tooltip";
@@ -30,6 +31,7 @@ const MovieRecomments = ({ text = "", movieID, page = 1 }) => {
     <div className="overflow-hidden">
       <Fragment>
         <div className="flex items-center gap-x-5 pb-5">
+          <h1 className="font-medium text-primary text-xl">{text}</h1>
           <div className="flex items-center gap-x-2">
             <Tooltip title="Trang trước" placement="top">
               <svg
@@ -75,6 +77,8 @@ const MovieRecomments = ({ text = "", movieID, page = 1 }) => {
           <Swiper
             spaceBetween={20}
             grabCursor={"true"}
+            freeMode={true}
+            modules={[FreeMode]}
             slidesPerView={6}
             className="rounded-lg overflow-hidden">
             {movie &&

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback, Fragment } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper";
 import { movieApi } from "../../api/Api";
 import MovieCard from "./MovieCard";
 import Tooltip from "@mui/material/Tooltip";
@@ -76,6 +77,8 @@ const MovieSimilar = ({ text = "", movieID, page = 1 }) => {
           <Swiper
             spaceBetween={20}
             grabCursor={"true"}
+            freeMode={true}
+            modules={[FreeMode]}
             slidesPerView={6}
             className="rounded-lg overflow-hidden">
             {movie &&

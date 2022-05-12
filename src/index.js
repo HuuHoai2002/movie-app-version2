@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import "swiper/css";
 import SwiperCore, { Autoplay } from "swiper";
-import "./index.scss";
 import { MovieProvider } from "./contexts/MovieContext";
 import App from "./App";
 import { ToastContainer } from "react-toastify";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/free-mode";
 import "react-toastify/dist/ReactToastify.css";
+import "./index.scss";
 SwiperCore.use([Autoplay]);
 
 ReactDOM.render(

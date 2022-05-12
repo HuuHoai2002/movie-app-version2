@@ -1,32 +1,30 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import { searchWithKeyword } from "../../api/Api";
 import Button from "../../components/Button/Button";
 import MovieCard from "../../components/Movie/MovieCard";
 import lodash from "lodash";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const SearchKeyword = () => {
   const [values, setValues] = useState("");
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(1);
+  const [activeKeyword, setActiveKeyword] = useState(null);
 
   const handleSetValues = lodash.debounce((e) => {
     setValues(e.target.value);
+    dispatch({ type: "ADD", payload: e.target.value });
+    setActiveKeyword(null);
   }, 1000);
 
   const handleGetMovie = useCallback(async () => {
     try {
-      const response = await searchWithKeyword(values, page);
-      const totalMovies = response?.results
-        ? [...movies, ...response.results]
-        : [];
-      setMovies(page === 1 ? response?.results : totalMovies);
-      setTotalPage(response.total_pages);
+      const response = await searchWithKeyword(values, 1);
+      response && setMovies(response?.results);
     } catch (error) {
       console.log(error);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [values, page]);
+  }, [values]);
   useEffect(() => {
     if (values) {
       handleGetMovie();
@@ -34,15 +32,58 @@ const SearchKeyword = () => {
       setMovies([]);
     }
   }, [handleGetMovie, values]);
+
+  console.log(movies);
+  const reducer = (listKeyword, action) => {
+    switch (action.type) {
+      case "ADD": {
+        const newlistKeyword = [...listKeyword];
+        const filter = newlistKeyword.some((item) =>
+          item.includes(action.payload)
+        );
+        if (!filter) newlistKeyword.push(action.payload);
+        setValue(newlistKeyword);
+        return newlistKeyword;
+      }
+      default:
+        throw new Error("Invalid Actions");
+    }
+  };
+  const [storedValue, setValue] = useLocalStorage("keyword", []);
+  const [listKeyword, dispatch] = useReducer(reducer, storedValue);
+
+  const handleSearchKeyword = useCallback((item, index) => {
+    setValues(item);
+    setActiveKeyword(index);
+  }, []);
   return (
-    <div className="container-watch">
-      <div className="flex items-start gap-x-2 my-10 flex-col gap-y-10">
+    <div className="container-watch mb-5">
+      <div className="flex items-start gap-x-2 my-10 flex-col gap-y-5">
         <input
           type="text"
           className="w-full bg-[#111111] p-5 text-center rounded-lg border-none outline-none text-xl font-medium"
           placeholder="Bạn muốn tìm gì hôm nay?"
           onChange={handleSetValues}
         />
+        {listKeyword.length > 0 && (
+          <div className="flex flex-col gap-y-3">
+            <h1 className="text-white font-medium">
+              Từ khóa bạn tìm kiếm gần đây
+            </h1>
+            <div className="flex items-center gap-5 flex-wrap">
+              {listKeyword.map((item, index) => (
+                <span
+                  className={`py-2 px-5 rounded-lg bg-[#111111] text-secondary cursor-pointer ${
+                    activeKeyword === index ? "!bg-primary text-white" : ""
+                  }`}
+                  key={item}
+                  onClick={() => handleSearchKeyword(item, index)}>
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
         <div>
           {values && movies.length > 0 ? (
             <div className="flex items-center justify-center gap-x-1">
@@ -71,18 +112,9 @@ const SearchKeyword = () => {
             <MovieCard
               data={item}
               key={item.id}
-              isTivi={item.media_type === "tv"}></MovieCard>
+              isTivi={item.media_type === "tv"}
+              details={true}></MovieCard>
           ))}
-      </div>
-      <div className="my-5 flex items-center justify-center">
-        {movies.length > 0 && totalPage > page ? (
-          <Button
-            text={"Xem Thêm"}
-            className="px-10 py-4 rounded-lg"
-            onClick={() => setPage((page) => page + 1)}></Button>
-        ) : (
-          ""
-        )}
       </div>
     </div>
   );

@@ -12,7 +12,8 @@ const MyList = () => {
             <MovieCard
               data={item}
               key={item.id}
-              isTivi={item.first_air_date}></MovieCard>
+              isTivi={item.first_air_date}
+              details={"true"}></MovieCard>
           ))}
         </div>
       ) : (

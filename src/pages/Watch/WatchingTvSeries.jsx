@@ -71,7 +71,7 @@ const WatchingTvSeries = () => {
     setValue(newValue);
   };
 
-  console.log(`Phần: ${changeSeason + 1} ..., Tập : ${changeEpisode + 1}`);
+  // console.log(`Phần: ${changeSeason + 1} ..., Tập : ${changeEpisode + 1}`);
   return (
     <div className="container-watch">
       <div className="flex flex-col gap-y-7">
@@ -125,8 +125,8 @@ const WatchingTvSeries = () => {
                         totalSeason.map((item, index) => (
                           <span
                             key={item.id}
-                            className={`hover:opacity-70 rounded-lg w-[60px] h-[30px] flex items-center justify-center text-[15px] bg-[#111111] font-semibold ${
-                              index === changeEpisode ? "text-red-500" : ""
+                            className={`hover:opacity-70 rounded-lg w-[60px] h-[30px] flex items-center justify-center text-[15px] text-white bg-transparent border-2 border-primary font-semibold ${
+                              index === changeEpisode ? "!bg-primary" : ""
                             }`}
                             onClick={() => setChangeEpisode(index)}>
                             {index + 1}

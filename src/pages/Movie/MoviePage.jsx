@@ -28,6 +28,7 @@ const MoviePage = () => {
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const handleSetValues = lodash.debounce((e) => {
     setValue(e.target.value);
@@ -43,6 +44,7 @@ const MoviePage = () => {
         ? [...movies, ...response.results]
         : [];
       setMovies(page === 1 ? response?.results : totalMovies);
+      totalMovies && setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +61,7 @@ const MoviePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, value]);
 
+  console.log(page);
   useEffect(() => {
     if (value) {
       handleGetMovieWithSearch();
@@ -74,10 +77,11 @@ const MoviePage = () => {
     setActiveContent(index);
     setPage(1);
   }, []);
+
   return (
     <Fragment>
       <Banner type="popular" page={2}></Banner>
-      <div className="container-movie min-h-[50vw]">
+      <div className="container-movie !min-h-[50vw] flex flex-col">
         <div className="my-10 flex items-center justify-between">
           <div className="flex items-center gap-x-10">
             {listContent.map((item, index) => (
@@ -104,18 +108,22 @@ const MoviePage = () => {
         </div>
         {
           <div className="grid grid-cols-6 gap-5">
-            {movies.length > 0 &&
+            {movies &&
               movies.map((item) => (
-                <MovieCard data={item} key={item.id}></MovieCard>
+                <MovieCard data={item} key={item.id} details={true}></MovieCard>
               ))}
           </div>
         }
         {!value && (
-          <div className="my-5 flex items-center justify-center">
-            <Button
-              text={"Xem Thêm"}
-              className="px-10 py-4 rounded-lg"
-              onClick={() => setPage((page) => page + 1)}></Button>
+          <div className="mt-auto py-5 flex items-center justify-center">
+            {!loading ? (
+              <Button
+                text={"Xem Thêm"}
+                className="px-10 py-4 rounded-lg"
+                onClick={() => setPage((page) => page + 1)}></Button>
+            ) : (
+              "Loading"
+            )}
           </div>
         )}
       </div>

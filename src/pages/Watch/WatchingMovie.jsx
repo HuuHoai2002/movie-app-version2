@@ -35,11 +35,6 @@ const WatchingMovie = () => {
     handleGetTvSeriesDetails(movieID);
   }, [handleGetMovieReviews, handleGetTvSeriesDetails, movieID]);
 
-  //Tabs
-  const [value, setValue] = React.useState("1");
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
   return (
     <div className="container-watch">
       <div className="flex flex-col gap-y-7">
@@ -52,18 +47,10 @@ const WatchingMovie = () => {
             className="w-full h-full rounded-lg"
             frameBorder="0"></iframe>
         </div>
-        <TabContext value={value}>
-          <TabList onChange={handleChange}>
-            <Tab label="Bình Luận" value="1" />
-            <Tab label="Phim Gợi Ý" value="2" />
-          </TabList>
-          <TabPanel value="1">
-            <UserComments reviews={reviews}></UserComments>
-          </TabPanel>
-          <TabPanel value="2">
-            <MovieRecomments movieID={movieID} text="Gợi Ý"></MovieRecomments>
-          </TabPanel>
-        </TabContext>
+        <UserComments reviews={reviews}></UserComments>
+        <div>
+          <MovieRecomments movieID={movieID} text="Gợi Ý"></MovieRecomments>
+        </div>
       </div>
     </div>
   );

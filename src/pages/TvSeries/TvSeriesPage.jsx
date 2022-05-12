@@ -83,7 +83,7 @@ const TvSeriesPage = () => {
   return (
     <Fragment>
       <BannerTvSeries type="top_rated" page={2}></BannerTvSeries>
-      <div className="container-movie min-h-[50vw]">
+      <div className="container-movie !min-h-[50vw]">
         <div className="my-10 flex items-center justify-between">
           <div className="flex items-center gap-x-5">
             {listContent.map((item, index) => (
@@ -112,7 +112,11 @@ const TvSeriesPage = () => {
           <div className="grid grid-cols-6 gap-5">
             {movies.length > 0 &&
               movies.map((item) => (
-                <MovieCard data={item} key={item.id} isTivi={true}></MovieCard>
+                <MovieCard
+                  data={item}
+                  key={item.id}
+                  isTivi={true}
+                  details={true}></MovieCard>
               ))}
           </div>
         }

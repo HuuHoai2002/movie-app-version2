@@ -1,10 +1,16 @@
 import React, { useEffect, useState, useCallback, Fragment } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper";
 import { movieApi } from "../../api/Api";
 import MovieCard from "./MovieCard";
 import Tooltip from "@mui/material/Tooltip";
 
-const MovieList = ({ text = "", type = "", page = 1 }) => {
+const MovieList = ({
+  text = "",
+  type = "",
+  page = 1,
+  isActiveChangePages = false,
+}) => {
   const [changePage, setChangePage] = useState(page);
   const [totalPage, setTotalPage] = useState(page);
   const [movie, setMovie] = useState([]);
@@ -34,50 +40,56 @@ const MovieList = ({ text = "", type = "", page = 1 }) => {
         <Fragment>
           <div className="flex items-center gap-x-5">
             <h1 className="text-xl font-medium py-5">{text}</h1>
-            <div className="flex items-center gap-x-2">
-              <Tooltip title="Trang trước" placement="top">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 transition-all hover:scale-150 cursor-pointer"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  visibility={changePage === page ? "hidden" : ""}
-                  onClick={handlePrePage}
-                  strokeWidth={2}>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </Tooltip>
-              <Tooltip title="Trang sau" placement="top">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 transition-all hover:scale-150 cursor-pointer"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  visibility={changePage === totalPage ? "hidden" : ""}
-                  onClick={handleNextPage}
-                  strokeWidth={2}>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Tooltip>
-            </div>
+            {isActiveChangePages && (
+              <div className="flex items-center gap-x-2">
+                <Tooltip title="Trang trước" placement="top">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 transition-all hover:scale-150 cursor-pointer"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    visibility={changePage === page ? "hidden" : ""}
+                    onClick={handlePrePage}
+                    strokeWidth={2}>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </Tooltip>
+                <Tooltip title="Trang sau" placement="top">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 transition-all hover:scale-150 cursor-pointer"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    visibility={changePage === totalPage ? "hidden" : ""}
+                    onClick={handleNextPage}
+                    strokeWidth={2}>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Tooltip>
+              </div>
+            )}
           </div>
           <div className="w-full rounded-lg relative">
             <Swiper
               spaceBetween={20}
               grabCursor={"true"}
               slidesPerView={6}
+              freeMode={true}
+              modules={[FreeMode]}
               ref={swiperRef}
-              className="rounded-lg overflow-hidden">
+              className="rounded-lg">
               {movie.map((item) => (
-                <SwiperSlide key={item.id} className="overflow-hidden">
+                <SwiperSlide
+                  key={item.id}
+                  className="hover:scale-95 hover:z-[99999] transition-all">
                   <MovieCard data={item}></MovieCard>
                 </SwiperSlide>
               ))}
