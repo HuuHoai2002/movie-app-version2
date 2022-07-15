@@ -4,6 +4,7 @@ import BannerTvSeries from "../../components/Banner/BannerTvSeries";
 import Button from "../../components/Button/Button";
 import MovieCard from "../../components/Movie/MovieCard";
 import lodash from "lodash";
+import { handleSetTitle } from "../../utils";
 
 const listContent = [
   {
@@ -29,7 +30,9 @@ const listContent = [
 ];
 
 const TvSeriesPage = () => {
-  document.title = "Phim Bộ";
+  React.useEffect(() => {
+    handleSetTitle("Phim Bộ , Drama", false);
+  }, []);
   const [activeContent, setActiveContent] = useState(0);
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);

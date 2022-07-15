@@ -136,6 +136,8 @@ const MovieProvider = ({ children }) => {
       setUserInfo(currentUser);
     });
   }, []);
+  const [isLogin, setIsLogin] = useState("");
+
   const value = {
     handleNavigate,
     navigate,
@@ -154,6 +156,8 @@ const MovieProvider = ({ children }) => {
     handleLogin,
     handleSignOut,
     getName,
+    isLogin,
+    setIsLogin,
   };
   return (
     <movieContext.Provider value={value}>{children}</movieContext.Provider>

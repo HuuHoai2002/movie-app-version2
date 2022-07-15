@@ -1,12 +1,13 @@
-import React, { Fragment, lazy, Suspense } from "react";
+import React, { Fragment, lazy, Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading/Loading";
 import Layout from "./pages/Layout/Layout";
 import Header from "./components/Header/Header";
+import { useMovies } from "./contexts/MovieContext";
 // lazy components
 const ProtectedRoute = lazy(() => import("./pages/Route/ProtectedRoute"));
 const ScrollToTop = lazy(() => import("./pages/ScrollToTop/ScrollToTop"));
-const HomePage = lazy(() => import("./pages/HomePage"));
+const HomePage = lazy(() => import("./pages/Home/HomePage"));
 const MoviePage = lazy(() => import("./pages/Movie/MoviePage"));
 const TvSeriesPage = lazy(() => import("./pages/TvSeries/TvSeriesPage"));
 const MovieDetails = lazy(() => import("./pages/Movie/MovieDetails"));
@@ -28,6 +29,12 @@ const ChangePassword = lazy(() =>
   import("./components/ChangePassword/ChangePassword")
 );
 const App = () => {
+  const { setIsLogin } = useMovies();
+  useEffect(() => {
+    const auth = localStorage.getItem("isLogin");
+    auth && setIsLogin(auth);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Fragment>
       <Header />

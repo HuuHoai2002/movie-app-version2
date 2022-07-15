@@ -42,7 +42,7 @@ const WatchingMovie = () => {
           <iframe
             title="frame"
             id="iframe"
-            src={`https://www.2embed.ru/embed/tmdb/movie?id=${movieID}`}
+            src={`https://www.2embed.to/embed/tmdb/movie?id=${movieID}`}
             allowFullScreen={true}
             className="w-full h-full rounded-lg"
             frameBorder="0"></iframe>

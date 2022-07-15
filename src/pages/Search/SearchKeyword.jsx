@@ -1,11 +1,15 @@
 import React, { useCallback, useEffect, useReducer, useState } from "react";
 import { searchWithKeyword } from "../../api/Api";
-import Button from "../../components/Button/Button";
+// import Button from "../../components/Button/Button";
 import MovieCard from "../../components/Movie/MovieCard";
 import lodash from "lodash";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import { handleSetTitle } from "../../utils/index";
 
 const SearchKeyword = () => {
+  React.useEffect(() => {
+    handleSetTitle("Tìm Kiếm Phim", false);
+  }, []);
   const [values, setValues] = useState("");
   const [movies, setMovies] = useState([]);
   const [activeKeyword, setActiveKeyword] = useState(null);
@@ -33,7 +37,6 @@ const SearchKeyword = () => {
     }
   }, [handleGetMovie, values]);
 
-  console.log(movies);
   const reducer = (listKeyword, action) => {
     switch (action.type) {
       case "ADD": {

@@ -1,0 +1,251 @@
+[debug] [2022-07-15T03:45:40.488Z] ----------------------------------------------------------------------
+[debug] [2022-07-15T03:45:40.491Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-07-15T03:45:40.493Z] CLI Version:   11.2.2
+[debug] [2022-07-15T03:45:40.493Z] Platform:      win32
+[debug] [2022-07-15T03:45:40.493Z] Node Version:  v16.13.0
+[debug] [2022-07-15T03:45:40.494Z] Time:          Fri Jul 15 2022 10:45:40 GMT+0700 (Indochina Time)
+[debug] [2022-07-15T03:45:40.495Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-07-15T03:45:40.507Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-15T03:45:40.508Z] > authorizing via signed-in user (huuhoai0511@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Admin\OneDrive\Project\React\movie-app-v2
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-07-15T03:46:04.368Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2022-07-15T03:46:05.102Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2022-07-15T03:46:05.103Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project movie-app-6ff8b (movie-app) 
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2022-07-15T03:46:25.343Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firebasedatabase.googleapis.com [none]
+[debug] [2022-07-15T03:46:27.001Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firebasedatabase.googleapis.com 200
+[debug] [2022-07-15T03:46:27.001Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firebasedatabase.googleapis.com [omitted]
+[warn] !  database: missing required API firebasedatabase.googleapis.com. Enabling now... 
+[debug] [2022-07-15T03:46:27.003Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firebasedatabase.googleapis.com:enable [none]
+[debug] [2022-07-15T03:46:28.428Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firebasedatabase.googleapis.com:enable 200
+[debug] [2022-07-15T03:46:28.428Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firebasedatabase.googleapis.com:enable [omitted]
+[debug] [2022-07-15T03:46:38.432Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firebasedatabase.googleapis.com [none]
+[debug] [2022-07-15T03:46:39.795Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firebasedatabase.googleapis.com 200
+[debug] [2022-07-15T03:46:39.795Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firebasedatabase.googleapis.com [omitted]
+[info] +  database: required API firebasedatabase.googleapis.com is enabled 
+[info] 
+[debug] [2022-07-15T03:46:39.801Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/movie-app-6ff8b [none]
+[debug] [2022-07-15T03:46:40.260Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/movie-app-6ff8b 200
+[debug] [2022-07-15T03:46:40.260Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/movie-app-6ff8b {"projectId":"movie-app-6ff8b","projectNumber":"69797564710","displayName":"movie-app","name":"projects/movie-app-6ff8b","resources":{"hostingSite":"movie-app-6ff8b","storageBucket":"movie-app-6ff8b.appspot.com","locationId":"asia-east2"},"state":"ACTIVE"}
+[debug] [2022-07-15T03:46:47.985Z] >>> [apiv2][query] POST https://firebasedatabase.googleapis.com/v1beta/projects/movie-app-6ff8b/locations/asia-southeast1/instances databaseId=movie-app-6ff8b-default-rtdb&validateOnly=true
+[debug] [2022-07-15T03:46:47.985Z] >>> [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/movie-app-6ff8b/locations/asia-southeast1/instances {"type":"default_database"}
+[debug] [2022-07-15T03:46:49.015Z] <<< [apiv2][status] POST https://firebasedatabase.googleapis.com/v1beta/projects/movie-app-6ff8b/locations/asia-southeast1/instances 200
+[debug] [2022-07-15T03:46:49.016Z] <<< [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/movie-app-6ff8b/locations/asia-southeast1/instances {"name":"projects/69797564710/locations/asia-southeast1/instances/movie-app-6ff8b-default-rtdb","project":"projects/69797564710","databaseUrl":"https://movie-app-6ff8b-default-rtdb.asia-southeast1.firebasedatabase.app","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[debug] [2022-07-15T03:46:49.018Z] >>> [apiv2][query] POST https://firebasedatabase.googleapis.com/v1beta/projects/movie-app-6ff8b/locations/asia-southeast1/instances databaseId=movie-app-6ff8b-default-rtdb
+[debug] [2022-07-15T03:46:49.019Z] >>> [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/movie-app-6ff8b/locations/asia-southeast1/instances {"type":"default_database"}
+[debug] [2022-07-15T03:46:49.925Z] <<< [apiv2][status] POST https://firebasedatabase.googleapis.com/v1beta/projects/movie-app-6ff8b/locations/asia-southeast1/instances 200
+[debug] [2022-07-15T03:46:49.925Z] <<< [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/movie-app-6ff8b/locations/asia-southeast1/instances {"name":"projects/69797564710/locations/asia-southeast1/instances/movie-app-6ff8b-default-rtdb","project":"projects/69797564710","databaseUrl":"https://movie-app-6ff8b-default-rtdb.asia-southeast1.firebasedatabase.app","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[info] 
+[info] Firebase Realtime Database Security Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2022-07-15T03:46:54.140Z] >>> [apiv2][query] GET https://movie-app-6ff8b-default-rtdb.asia-southeast1.firebasedatabase.app/.settings/rules.json [none]
+[debug] [2022-07-15T03:46:56.001Z] <<< [apiv2][status] GET https://movie-app-6ff8b-default-rtdb.asia-southeast1.firebasedatabase.app/.settings/rules.json 200
+[debug] [2022-07-15T03:46:56.001Z] <<< [apiv2][body] GET https://movie-app-6ff8b-default-rtdb.asia-southeast1.firebasedatabase.app/.settings/rules.json [stream]
+[info] +  Database Rules for movie-app-6ff8b-default-rtdb have been written to database.rules.json. 
+[info] Future modifications to database.rules.json will update Realtime Database Security Rules when you run
+[info] firebase deploy.
+[info] 
+=== Firestore Setup
+[debug] [2022-07-15T03:46:56.009Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firestore.googleapis.com [none]
+[debug] [2022-07-15T03:46:57.366Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firestore.googleapis.com 200
+[debug] [2022-07-15T03:46:57.366Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/firestore.googleapis.com [omitted]
+[debug] [2022-07-15T03:46:57.367Z] >>> [apiv2][query] GET https://appengine.googleapis.com/v1/apps/movie-app-6ff8b [none]
+[debug] [2022-07-15T03:46:57.974Z] <<< [apiv2][status] GET https://appengine.googleapis.com/v1/apps/movie-app-6ff8b 200
+[debug] [2022-07-15T03:46:57.974Z] <<< [apiv2][body] GET https://appengine.googleapis.com/v1/apps/movie-app-6ff8b {"name":"apps/movie-app-6ff8b","id":"movie-app-6ff8b","authDomain":"gmail.com","locationId":"asia-east2","codeBucket":"staging.movie-app-6ff8b.appspot.com","servingStatus":"SERVING","defaultHostname":"movie-app-6ff8b.df.r.appspot.com","defaultBucket":"movie-app-6ff8b.appspot.com","serviceAccount":"movie-app-6ff8b@appspot.gserviceaccount.com","gcrDomain":"asia.gcr.io","databaseType":"CLOUD_FIRESTORE","featureSettings":{"splitHealthChecks":true,"useContainerOptimizedOs":true}}
+[debug] [2022-07-15T03:46:57.975Z] database_type: CLOUD_FIRESTORE
+[debug] [2022-07-15T03:46:57.975Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-15T03:46:57.975Z] > authorizing via signed-in user (huuhoai0511@gmail.com)
+[debug] [2022-07-15T03:46:57.976Z] [iam] checking project movie-app-6ff8b for permissions ["firebase.projects.get"]
+[debug] [2022-07-15T03:46:57.976Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/movie-app-6ff8b:testIamPermissions [none]
+[debug] [2022-07-15T03:46:57.976Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/movie-app-6ff8b:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-07-15T03:46:59.006Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/movie-app-6ff8b:testIamPermissions 200
+[debug] [2022-07-15T03:46:59.006Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/movie-app-6ff8b:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2022-07-15T03:47:01.708Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/movie-app-6ff8b/releases pageSize=10&pageToken=
+[debug] [2022-07-15T03:47:03.104Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/movie-app-6ff8b/releases 200
+[debug] [2022-07-15T03:47:03.104Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/movie-app-6ff8b/releases {"releases":[{"name":"projects/movie-app-6ff8b/releases/cloud.firestore","rulesetName":"projects/movie-app-6ff8b/rulesets/6dc3c751-b30f-4f85-850c-33d614dd36d1","createTime":"2022-04-11T03:19:07.149315Z","updateTime":"2022-05-11T05:48:04.101950Z"},{"name":"projects/movie-app-6ff8b/releases/firebase.storage/movie-app-6ff8b.appspot.com","rulesetName":"projects/movie-app-6ff8b/rulesets/37717fef-a173-4ab3-8741-95013e941881","createTime":"2022-05-06T14:10:34.054114Z","updateTime":"2022-05-06T14:18:09.001238Z"}]}
+[debug] [2022-07-15T03:47:03.104Z] Found ruleset: projects/movie-app-6ff8b/rulesets/6dc3c751-b30f-4f85-850c-33d614dd36d1
+[debug] [2022-07-15T03:47:03.105Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/movie-app-6ff8b/rulesets/6dc3c751-b30f-4f85-850c-33d614dd36d1 [none]
+[debug] [2022-07-15T03:47:04.415Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/movie-app-6ff8b/rulesets/6dc3c751-b30f-4f85-850c-33d614dd36d1 200
+[debug] [2022-07-15T03:47:04.415Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/movie-app-6ff8b/rulesets/6dc3c751-b30f-4f85-850c-33d614dd36d1 [omitted]
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2022-07-15T03:47:09.266Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/movie-app-6ff8b/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2022-07-15T03:47:09.268Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/movie-app-6ff8b/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false [none]
+[debug] [2022-07-15T03:47:09.664Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/movie-app-6ff8b/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false 200
+[debug] [2022-07-15T03:47:09.665Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/movie-app-6ff8b/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false {"fields":[{"name":"projects/movie-app-6ff8b/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2022-07-15T03:47:09.709Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/movie-app-6ff8b/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2022-07-15T03:47:09.709Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/movie-app-6ff8b/databases/(default)/collectionGroups/-/indexes {}
+[info] 
+=== Functions Setup
+[info] 
+[info] A functions directory will be created in your project with sample code
+[info] pre-configured. Functions can be deployed with firebase deploy.
+[info] 
+[debug] [2022-07-15T03:47:09.715Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-15T03:47:09.716Z] > authorizing via signed-in user (huuhoai0511@gmail.com)
+[debug] [2022-07-15T03:47:09.716Z] [iam] checking project movie-app-6ff8b for permissions ["firebase.projects.get"]
+[debug] [2022-07-15T03:47:09.716Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/movie-app-6ff8b:testIamPermissions [none]
+[debug] [2022-07-15T03:47:09.717Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/movie-app-6ff8b:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-07-15T03:47:10.698Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/movie-app-6ff8b:testIamPermissions 200
+[debug] [2022-07-15T03:47:10.698Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/movie-app-6ff8b:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-07-15T03:47:10.698Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/cloudfunctions.googleapis.com [none]
+[debug] [2022-07-15T03:47:10.700Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/runtimeconfig.googleapis.com [none]
+[debug] [2022-07-15T03:47:12.056Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/runtimeconfig.googleapis.com 200
+[debug] [2022-07-15T03:47:12.056Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2022-07-15T03:47:12.233Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/cloudfunctions.googleapis.com 200
+[debug] [2022-07-15T03:47:12.233Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2022-07-15T03:47:12.233Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/cloudfunctions.googleapis.com:enable [none]
+[debug] [2022-07-15T03:47:13.838Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/cloudfunctions.googleapis.com:enable 200
+[debug] [2022-07-15T03:47:13.838Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/cloudfunctions.googleapis.com:enable [omitted]
+[debug] [2022-07-15T03:47:23.839Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/cloudfunctions.googleapis.com [none]
+[debug] [2022-07-15T03:47:25.218Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/cloudfunctions.googleapis.com 200
+[debug] [2022-07-15T03:47:25.218Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/movie-app-6ff8b/services/cloudfunctions.googleapis.com [omitted]
+[info] +  Wrote functions/package.json 
+[info] +  Wrote functions/.eslintrc.js 
+[info] +  Wrote functions/index.js 
+[info] +  Wrote functions/.gitignore 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2022-07-15T03:48:50.376Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2022-07-15T03:48:50.791Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2022-07-15T03:48:50.791Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"9.9.0","browserURL":"https://www.gstatic.com/firebasejs/9.9.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/9.9.0/firebase.tgz"},"live":{"version":"9.9","browserURL":"https://www.gstatic.com/firebasejs/live/9.9/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/9.9/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/9.9.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/9.9.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/9.9.0/firebase-auth/cordova.js","auth/react-native":"https://www.gstatic.com/firebasejs/9.9.0/firebase-auth/react-native.js","functions":"https://www.gstatic.com/firebasejs/9.9.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/9.9.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/9.9.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/9.9.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/9.9.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/9.9.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/9.9.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/9.9.0/firebase-database.js","firestore.memory":"https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore.memory.js"}}
+[info] +  Wrote y/index.html 
+[info] 
+[info] i  Detected a .git folder at C:\Users\Admin\OneDrive\Project\React\movie-app-v2 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=130121354&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2022-07-15T03:48:52.249Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2022-07-15T03:48:52.249Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2022-07-15T03:48:53.123Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2022-07-15T03:48:53.123Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2022-07-15T03:48:53.132Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2022-07-15T03:48:53.725Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2022-07-15T03:48:53.726Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"HuuHoai2002","id":87310469,"node_id":"MDQ6VXNlcjg3MzEwNDY5","avatar_url":"https://avatars.githubusercontent.com/u/87310469?v=4","gravatar_id":"","url":"https://api.github.com/users/HuuHoai2002","html_url":"https://github.com/HuuHoai2002","followers_url":"https://api.github.com/users/HuuHoai2002/followers","following_url":"https://api.github.com/users/HuuHoai2002/following{/other_user}","gists_url":"https://api.github.com/users/HuuHoai2002/gists{/gist_id}","starred_url":"https://api.github.com/users/HuuHoai2002/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/HuuHoai2002/subscriptions","organizations_url":"https://api.github.com/users/HuuHoai2002/orgs","repos_url":"https://api.github.com/users/HuuHoai2002/repos","events_url":"https://api.github.com/users/HuuHoai2002/events{/privacy}","received_events_url":"https://api.github.com/users/HuuHoai2002/received_events","type":"User","site_admin":false,"name":"Nghiêm Hữu Hoài","company":null,"blog":"","location":null,"email":"Huuhoai0511@gmail.com","hireable":null,"bio":"Hế lô ","twitter_username":null,"public_repos":23,"public_gists":0,"followers":0,"following":1,"created_at":"2021-07-12T11:04:49Z","updated_at":"2022-07-04T09:34:27Z","private_gists":0,"total_private_repos":4,"owned_private_repos":4,"disk_usage":27806,"collaborators":2,"two_factor_authentication":false,"plan":{"name":"pro","space":976562499,"collaborators":0,"private_repos":9999}}
+[info] 
+[info] +  Success! Logged into GitHub as HuuHoai2002 
+[info] 
+[debug] [2022-07-15T03:48:59.750Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:49:00.373Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:49:00.374Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:49:00.929Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:49:01.433Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:49:01.434Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:49:28.494Z] >>> [apiv2][query] GET https://api.github.com/repos/user/actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:49:29.064Z] <<< [apiv2][status] GET https://api.github.com/repos/user/actions/secrets/public-key 404
+[debug] [2022-07-15T03:49:29.064Z] <<< [apiv2][body] GET https://api.github.com/repos/user/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:49:32.477Z] >>> [apiv2][query] GET https://api.github.com/repos/user/actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:49:33.009Z] <<< [apiv2][status] GET https://api.github.com/repos/user/actions/secrets/public-key 404
+[debug] [2022-07-15T03:49:33.009Z] <<< [apiv2][body] GET https://api.github.com/repos/user/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:49:33.236Z] >>> [apiv2][query] GET https://api.github.com/repos/user/actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:49:33.448Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:49:33.638Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:49:33.762Z] <<< [apiv2][status] GET https://api.github.com/repos/user/actions/secrets/public-key 404
+[debug] [2022-07-15T03:49:33.762Z] <<< [apiv2][body] GET https://api.github.com/repos/user/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:49:33.809Z] >>> [apiv2][query] GET https://api.github.com/repos/user/actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:49:34.039Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:49:34.039Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:49:34.209Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:49:34.209Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:49:34.298Z] <<< [apiv2][status] GET https://api.github.com/repos/user/actions/secrets/public-key 404
+[debug] [2022-07-15T03:49:34.298Z] <<< [apiv2][body] GET https://api.github.com/repos/user/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:49:38.489Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:49:39.071Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:49:39.071Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:29.670Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:30.219Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:30.219Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:30.599Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:31.090Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:31.090Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:31.525Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:32.038Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:32.038Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:32.169Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:32.380Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:32.571Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:32.668Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:32.668Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:32.762Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:32.913Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:32.929Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:32.929Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:33.092Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:33.092Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:33.094Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:33.261Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:33.262Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:33.274Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:33.386Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:33.387Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:33.444Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:33.589Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:33.589Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:33.606Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:33.749Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:33.749Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:33.775Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:33.922Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:33.923Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:33.937Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:34.102Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:34.102Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:34.109Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:34.241Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:34.241Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:34.277Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:34.403Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:34.403Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:34.450Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:34.588Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:34.589Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:34.632Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2022-07-15T03:54:34.760Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:34.760Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:34.945Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:34.945Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:54:35.211Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 404
+[debug] [2022-07-15T03:54:35.211Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest"}
+[debug] [2022-07-15T03:58:17.434Z] Error: kill ENOSYS
+    at process.kill (node:internal/process/per_thread:215:13)
+    at process.listener (C:\Users\Admin\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\signal-exit\index.js:95:15)
+    at process.emit (node:events:390:28)

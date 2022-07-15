@@ -2,8 +2,12 @@ import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../../firebase-app/firebase-config";
+import { handleSetTitle } from "../../utils/index";
 
 const NotificationPage = () => {
+  React.useEffect(() => {
+    handleSetTitle("Thông Báo", false);
+  }, []);
   const { id } = useParams();
   const [notification, setNotification] = useState(null);
   useEffect(() => {

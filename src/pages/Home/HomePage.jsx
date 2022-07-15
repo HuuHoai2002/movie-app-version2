@@ -1,10 +1,13 @@
 import React, { Fragment } from "react";
-import Banner from "../components/Banner/Banner";
-import MovieList from "../components/Movie/MovieList";
-import TVSeriesList from "../components/TVSeries/TVSeriesList";
+import Banner from "../../components/Banner/Banner";
+import MovieList from "../../components/Movie/MovieList";
+import TVSeriesList from "../../components/TVSeries/TVSeriesList";
+import { handleSetTitle } from "../../utils";
 
 const HomePage = () => {
-  document.title = "Trang Chủ";
+  React.useEffect(() => {
+    handleSetTitle("Trang chủ", true);
+  }, []);
   return (
     <Fragment>
       <Banner></Banner>

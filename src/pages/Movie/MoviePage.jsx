@@ -4,6 +4,7 @@ import Banner from "../../components/Banner/Banner";
 import Button from "../../components/Button/Button";
 import MovieCard from "../../components/Movie/MovieCard";
 import lodash from "lodash";
+import { handleSetTitle } from "../../utils";
 
 const listContent = [
   {
@@ -23,7 +24,9 @@ const listContent = [
   },
 ];
 const MoviePage = () => {
-  document.title = "Phim Chiếu Rạp";
+  React.useEffect(() => {
+    handleSetTitle("Phim Chiếu Rạp", false);
+  }, []);
   const [activeContent, setActiveContent] = useState(0);
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);

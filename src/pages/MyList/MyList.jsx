@@ -1,8 +1,12 @@
 import React from "react";
 import MovieCard from "../../components/Movie/MovieCard";
 import { useMovies } from "../../contexts/MovieContext";
+import { handleSetTitle } from "../../utils";
 
 const MyList = () => {
+  React.useEffect(() => {
+    handleSetTitle("Danh Sách Của Tôi", false);
+  }, []);
   const { stateCarts } = useMovies();
   return (
     <div className="container-watch">
